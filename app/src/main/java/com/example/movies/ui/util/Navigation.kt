@@ -8,7 +8,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.movies.ui.home.HomeViewModel
 import com.example.movies.ui.home.HomeScreen
 import com.example.movies.ui.splash.SplashScreen
+import com.google.accompanist.pager.ExperimentalPagerApi
 
+@ExperimentalPagerApi
 @Composable
 fun Navigation(
     viewModel: HomeViewModel = viewModel()

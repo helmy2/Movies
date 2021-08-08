@@ -24,7 +24,7 @@ fun ImageList(
     Column(modifier.padding(8.dp)) {
         Text(
             text = title,
-            fontSize = 28.sp,
+            fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
                 .padding(8.dp)

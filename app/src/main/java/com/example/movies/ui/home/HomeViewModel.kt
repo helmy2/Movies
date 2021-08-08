@@ -10,7 +10,6 @@ import com.example.movies.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.random.Random
 
 private const val TAG = "DetailsViewModel"
 
@@ -18,27 +17,109 @@ private const val TAG = "DetailsViewModel"
 class HomeViewModel @Inject constructor(
     private val repository: Repository
 ) : ViewModel() {
-    var result: MutableState<Result?> = mutableStateOf(null)
-        private set
 
     var popularResults: MutableState<List<Result>?> = mutableStateOf(null)
+        private set
+
+    var topRatedResults: MutableState<List<Result>?> = mutableStateOf(null)
+        private set
+
+    var upcomingResults: MutableState<List<Result>?> = mutableStateOf(null)
+        private set
+
+    var nowPlayingResults: MutableState<List<Result>?> = mutableStateOf(null)
+        private set
+
+    var nowPlayingArabicResults: MutableState<List<Result>?> = mutableStateOf(null)
+        private set
+
+    var animationResults: MutableState<List<Result>?> = mutableStateOf(null)
         private set
 
     fun getPopularMovies() = viewModelScope.launch {
         try {
             val response = repository.getPopularMovies()
-            if (response.isSuccessful){
+            if (response.isSuccessful) {
                 popularResults.value = response.body()?.results
-            }else {
+            } else {
                 Log.i(TAG, "getPopularMovies: ${response.errorBody()}")
             }
-        } catch (e :Exception){
+        } catch (e: Exception) {
+            Log.i(TAG, "getPopularMovies: ${e.message}")
+        }
+    }
+
+    fun getUpcomingMovies() = viewModelScope.launch {
+        try {
+            val response = repository.getUpcomingMovies()
+            if (response.isSuccessful) {
+                upcomingResults.value = response.body()?.results
+            } else {
+                Log.i(TAG, "getPopularMovies: ${response.errorBody()}")
+            }
+        } catch (e: Exception) {
+            Log.i(TAG, "getPopularMovies: ${e.message}")
+        }
+    }
+
+    fun getNowPlayingMovies() = viewModelScope.launch {
+        try {
+            val response = repository.getNowPlayingMovies()
+            if (response.isSuccessful) {
+                nowPlayingResults.value = response.body()?.results
+            } else {
+                Log.i(TAG, "getPopularMovies: ${response.errorBody()}")
+            }
+        } catch (e: Exception) {
+            Log.i(TAG, "getPopularMovies: ${e.message}")
+        }
+    }
+    fun getNowPlayingArabicMovies() = viewModelScope.launch {
+        try {
+            val response = repository.getNowPlayingArabicMovies()
+            if (response.isSuccessful) {
+                nowPlayingArabicResults.value = response.body()?.results
+            } else {
+                Log.i(TAG, "getPopularMovies: ${response.errorBody()}")
+            }
+        } catch (e: Exception) {
+            Log.i(TAG, "getPopularMovies: ${e.message}")
+        }
+    }
+
+    fun getTopRatedMovies() = viewModelScope.launch {
+        try {
+            val response = repository.getTopRatedMovies()
+            if (response.isSuccessful) {
+                topRatedResults.value = response.body()?.results
+            } else {
+                Log.i(TAG, "getPopularMovies: ${response.errorBody()}")
+            }
+        } catch (e: Exception) {
+            Log.i(TAG, "getPopularMovies: ${e.message}")
+        }
+    }
+
+    fun getAnimationMovies() = viewModelScope.launch {
+        try {
+            val response = repository.getAnimationMovies()
+            if (response.isSuccessful) {
+                animationResults.value = response.body()?.results
+            } else {
+                Log.i(TAG, "getPopularMovies: ${response.errorBody()}")
+            }
+        } catch (e: Exception) {
             Log.i(TAG, "getPopularMovies: ${e.message}")
         }
     }
 
     init {
         val list = listOf(436969, 497698, 451048, 337404, 729720)
+        getNowPlayingArabicMovies()
         getPopularMovies()
+        getTopRatedMovies()
+        getNowPlayingMovies()
+        getUpcomingMovies()
+        getAnimationMovies()
     }
 }

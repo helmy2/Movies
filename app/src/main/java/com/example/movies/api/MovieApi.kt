@@ -25,19 +25,24 @@ interface MovieApi {
     @GET("movie/popular$API_KEY")
     suspend fun getPopularMovies(): Response<ResultResponse>
 
+    @GET("movie/now_playing$API_KEY")
+    suspend fun getNowPlayingMovies(): Response<ResultResponse>
+
+    @GET("movie/now_playing$API_KEY&region=eg")
+    suspend fun getNowPlayingArabicMovies(): Response<ResultResponse>
+
+    @GET("movie/top_rated$API_KEY")
+    suspend fun getTopRatedMovies(): Response<ResultResponse>
+
+    @GET("movie/upcoming$API_KEY")
+    suspend fun getUpcomingMovies(): Response<ResultResponse>
+
+    @GET("discover/movie$API_KEY&page=1&with_genres=16")
+    suspend fun getAnimationMovies(): Response<ResultResponse>
+
     @GET("movie/{id}$API_KEY")
     suspend fun getMovieDetails(@Path("id") id: Int): Response<Result>
 
-//
-//    @GET("movie/top_rated$API_KEY")
-//    suspend fun getTopRatedMovies(@Query("page") page: Int = 1): ResultResponse
-//
-//    @GET("discover/movie$API_KEY&sort_by=popularity.desc")
-//    suspend fun getMovieGenre(
-//        @Query("with_genres") id: Int,
-//        @Query("page") page: Int
-//    ): ResultResponse
-//
 
 //    @GET("movie/{id}/credits$API_KEY")
 //    suspend fun getMovieCast(@Path("id") id: Int): CastResponse
@@ -71,16 +76,13 @@ interface MovieApi {
 //
 //    @GET("search/multi$API_KEY")
 //    suspend fun getSearch(@Query("query") query: String): ResultResponse
-//
-//
+
 //    @GET("movie/{id}/images$API_KEY")
 //    suspend fun getMovieImages(@Path("id") id: Int): ImagesResponse
 //
 //    @GET("tv/{id}/images$API_KEY")
 //    suspend fun getTVImages(@Path("id") id: Int): ImagesResponse
-//
-////    person/{person_id}?api_key=<<api_key>>
-//
+// //
 //    @GET("person/{id}$API_KEY")
 //    suspend fun getPersonDetails(@Path("id") id: Int): Person
 //
