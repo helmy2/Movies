@@ -1,5 +1,6 @@
 package com.example.movies.ui.home.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -28,28 +29,27 @@ import kotlin.math.absoluteValue
 @Composable
 fun MainImageList(
     results: List<Result>,
-    title: String,
+    onItemClick: (id: Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val pagerState = rememberPagerState(pageCount = results.size, infiniteLoop = true)
+    val pagerState = rememberPagerState(pageCount = results.size)
 
     LaunchedEffect(key1 = pagerState.currentPage) {
         delay(3000L)
+        if (pagerState.currentPage >= results.size - 1)
+            pagerState.animateScrollToPage(page = 0)
         pagerState.animateScrollToPage(page = pagerState.currentPage + 1)
     }
 
-    Column(modifier.padding(8.dp)) {
-        Text(
-            text = title,
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .padding(8.dp)
-                .padding(bottom = 8.dp)
-        )
+    Column(modifier) {
         HorizontalPager(state = pagerState, modifier = Modifier.fillMaxWidth()) { page ->
-            Card(
-                Modifier
+            MainImageCard(
+                posterUrl = MovieApi.IMAGE_URL + results[page].posterPath,
+                backgroundUrl = MovieApi.IMAGE_URL + results[page].backdropPath,
+                rating = "%.1f".format(results[page].voteAverage * .5).toFloat(),
+                title = results[page].title,
+                modifier = Modifier
+                    .clickable { onItemClick(results[page].id) }
                     .graphicsLayer {
                         // Calculate the absolute offset for the current page from the
                         // scroll position. We use the absolute value which allows us to mirror
@@ -57,14 +57,16 @@ fun MainImageList(
                         val pageOffset = calculateCurrentOffsetForPage(page).absoluteValue
 
                         // We animate the scaleX + scaleY, between 85% and 100%
-                        MathUtils.lerp(
-                            0.85f,
-                            1f,
-                            1f - pageOffset.coerceIn(0f, 1f)
-                        ).also { scale ->
-                            scaleX = scale
-                            scaleY = scale
-                        }
+                        MathUtils
+                            .lerp(
+                                0.85f,
+                                1f,
+                                1f - pageOffset.coerceIn(0f, 1f)
+                            )
+                            .also { scale ->
+                                scaleX = scale
+                                scaleY = scale
+                            }
 
                         // We animate the alpha, between 50% and 100%
                         alpha = MathUtils.lerp(
@@ -73,15 +75,7 @@ fun MainImageList(
                             1f - pageOffset.coerceIn(0f, 1f)
                         )
                     }
-                    .fillMaxWidth(0.6f)
-                    .clip(RoundedCornerShape(10.dp))
-            ) {
-                MainImageCard(
-                    url = MovieApi.IMAGE_URL + results[page].posterPath,
-                    title = results[page].title,
-                    modifier = Modifier.padding(horizontal = 8.dp)
-                )
-            }
+            )
         }
     }
 }

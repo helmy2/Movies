@@ -114,7 +114,6 @@ class HomeViewModel @Inject constructor(
     }
 
     init {
-        val list = listOf(436969, 497698, 451048, 337404, 729720)
         getNowPlayingArabicMovies()
         getPopularMovies()
         getTopRatedMovies()

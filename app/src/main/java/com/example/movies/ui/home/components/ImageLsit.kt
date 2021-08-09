@@ -1,5 +1,6 @@
 package com.example.movies.ui.home.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
@@ -18,6 +19,7 @@ import com.example.movies.models.Result
 fun ImageList(
     results: List<Result>,
     title: String,
+    onItemClick: (id: Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
 
@@ -31,12 +33,12 @@ fun ImageList(
                 .padding(bottom = 8.dp)
         )
         LazyRow {
-            items(items = results) { movie ->
+            items(items = results) { result ->
                 ImageCard(
-                    url = MovieApi.IMAGE_URL + movie.posterPath,
-                    title = movie.title,
-                    rating = "%.1f".format(movie.voteAverage * .5).toFloat(),
-                    modifier = Modifier.padding(horizontal = 8.dp)
+                    url = MovieApi.IMAGE_URL + result.posterPath,
+                    title = result.title,
+                    rating = "%.1f".format(result.voteAverage * .5).toFloat(),
+                    modifier = Modifier.padding(horizontal = 8.dp).clickable { onItemClick(result.id) }
                 )
             }
         }

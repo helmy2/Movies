@@ -26,6 +26,7 @@ private const val TAG = "HomeScreen"
 @ExperimentalPagerApi
 @Composable
 fun HomeScreen(
+    onItemClick: (id: Int) -> Unit,
     viewModel: HomeViewModel = viewModel()
 ) {
     val popularResults by remember { viewModel.popularResults }
@@ -55,33 +56,62 @@ fun HomeScreen(
     }) {
         LazyColumn {
             item {
-                nowPlayingArabicResults?.let {
-                    MainImageList(it.subList(0, 5), "Playing Now In Egypt", modifier = Modifier.height(400.dp))
-                }
-            }
-            item {
                 nowPlayingResults?.let {
-                    ImageList(it, "Playing Now In The World", modifier = Modifier.height(360.dp))
+                    MainImageList(
+                        it,
+                        onItemClick,
+                        modifier = Modifier.height(300.dp)
+                    )
                 }
             }
+//            item {
+//                nowPlayingArabicResults?.let {
+//                    ImageList(
+//                        it,
+//                        "Playing Now Egypt",
+//                        onItemClick,
+//                        modifier = Modifier.height(360.dp)
+//                    )
+//                }
+//            }
             item {
                 animationResults?.let {
-                    ImageList(it, "Animation", modifier = Modifier.height(360.dp))
+                    ImageList(
+                        it,
+                        "Animation",
+                        onItemClick,
+                        modifier = Modifier.height(360.dp)
+                    )
                 }
             }
             item {
                 upcomingResults?.let {
-                    ImageList(it, "Upcoming", modifier = Modifier.height(360.dp))
+                    ImageList(
+                        it,
+                        "Upcoming",
+                        onItemClick,
+                        modifier = Modifier.height(360.dp)
+                    )
                 }
             }
             item {
                 topRatedResults?.let {
-                    ImageList(it, "Top Rated", modifier = Modifier.height(360.dp))
+                    ImageList(
+                        it,
+                        "Top Rated",
+                        onItemClick,
+                        modifier = Modifier.height(360.dp)
+                    )
                 }
             }
             item {
                 popularResults?.let {
-                    ImageList(it, "Popular", modifier = Modifier.height(360.dp))
+                    ImageList(
+                        it,
+                        "Popular",
+                        onItemClick,
+                        modifier = Modifier.height(360.dp)
+                    )
                 }
             }
         }
