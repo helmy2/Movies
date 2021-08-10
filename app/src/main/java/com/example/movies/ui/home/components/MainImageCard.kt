@@ -64,7 +64,7 @@ fun MainImageCard(
                 modifier = modifier
                     .fillMaxHeight(.7f)
                     .aspectRatio(.7f)
-                    .padding(8.dp)
+                    .padding(start = 16.dp)
                     .placeholder(placeholder)
                     .shadow(elevation = 10.dp),
                 contentScale = ContentScale.Crop
@@ -88,7 +88,7 @@ fun MainImageCard(
                         .fillMaxWidth(.7f)
                 ) {
                     Ratingbar(
-                        rating,
+                        "%.1f".format(rating).toFloat(),
                         modifier = Modifier
                             .weight(7f)
                             .placeholder(placeholder)

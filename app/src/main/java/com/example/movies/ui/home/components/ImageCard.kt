@@ -57,7 +57,7 @@ fun ImageCard(
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 8.dp,end = 8.dp,top = 8.dp)
+                    .padding(start = 8.dp, end = 8.dp, top = 8.dp)
                     .placeholder(placeholder)
             )
             BoxWithConstraints(Modifier.padding(vertical = 8.dp)) {
@@ -68,7 +68,7 @@ fun ImageCard(
                         .padding(horizontal = 8.dp)
                 ) {
                     Ratingbar(
-                        rating,
+                        "%.1f".format(rating).toFloat(),
                         modifier = Modifier
                             .weight(7f)
                             .placeholder(placeholder)

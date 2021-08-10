@@ -1,6 +1,7 @@
 package com.example.movies.ui
 
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
@@ -18,13 +19,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MoviesTheme {
-//                val systemUiController = rememberSystemUiController()
-//                val color = MaterialTheme.colors.background
-//                SideEffect {
-//                    systemUiController.setStatusBarColor(color = color)
-//                    systemUiController.setNavigationBarColor(color = color)
-//                }
-
                 Surface(color = MaterialTheme.colors.background) {
                     Navigation()
                 }

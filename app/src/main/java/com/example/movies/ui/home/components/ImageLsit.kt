@@ -37,8 +37,10 @@ fun ImageList(
                 ImageCard(
                     url = MovieApi.IMAGE_URL + result.posterPath,
                     title = result.title,
-                    rating = "%.1f".format(result.voteAverage * .5).toFloat(),
-                    modifier = Modifier.padding(horizontal = 8.dp).clickable { onItemClick(result.id) }
+                    rating = result.voteAverage.toFloat(),
+                    modifier = Modifier
+                        .padding(horizontal = 8.dp)
+                        .clickable { onItemClick(result.id) }
                 )
             }
         }

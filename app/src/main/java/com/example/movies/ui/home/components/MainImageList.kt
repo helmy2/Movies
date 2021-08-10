@@ -45,8 +45,8 @@ fun MainImageList(
         HorizontalPager(state = pagerState, modifier = Modifier.fillMaxWidth()) { page ->
             MainImageCard(
                 posterUrl = MovieApi.IMAGE_URL + results[page].posterPath,
-                backgroundUrl = MovieApi.IMAGE_URL + results[page].backdropPath,
-                rating = "%.1f".format(results[page].voteAverage * .5).toFloat(),
+                backgroundUrl = MovieApi.IMAGE_URL_ORIGINAL + results[page].backdropPath,
+                rating = results[page].voteAverage.toFloat(),
                 title = results[page].title,
                 modifier = Modifier
                     .clickable { onItemClick(results[page].id) }

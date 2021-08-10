@@ -36,87 +36,69 @@ fun HomeScreen(
     val upcomingResults by remember { viewModel.upcomingResults }
     val animationResults by remember { viewModel.animationResults }
 
-    Scaffold(topBar = {
-        TopAppBar(
-            title = {
-                Text(text = "Movies", fontSize = 28.sp, fontWeight = FontWeight.Black)
-            },
-            backgroundColor = MaterialTheme.colors.background,
-            actions = {
-                Box(
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .padding(end = 8.dp),
-                    contentAlignment = Alignment.CenterEnd
-                ) {
-                    Icon(Icons.Default.Search, contentDescription = Icons.Default.Search.name)
-                }
+    LazyColumn {
+        item {
+            nowPlayingResults?.let {
+                MainImageList(
+                    it,
+                    onItemClick,
+                    modifier = Modifier.height(300.dp)
+                )
             }
-        )
-    }) {
-        LazyColumn {
-            item {
-                nowPlayingResults?.let {
-                    MainImageList(
-                        it,
-                        onItemClick,
-                        modifier = Modifier.height(300.dp)
-                    )
-                }
-            }
-//            item {
-//                nowPlayingArabicResults?.let {
-//                    ImageList(
-//                        it,
-//                        "Playing Now Egypt",
-//                        onItemClick,
-//                        modifier = Modifier.height(360.dp)
-//                    )
-//                }
+        }
+//        item {
+//            nowPlayingArabicResults?.let {
+//                ImageList(
+//                    it,
+//                    "Playing Now Egypt",
+//                    onItemClick,
+//                    modifier = Modifier.height(360.dp)
+//                )
 //            }
-            item {
-                animationResults?.let {
-                    ImageList(
-                        it,
-                        "Animation",
-                        onItemClick,
-                        modifier = Modifier.height(360.dp)
-                    )
-                }
+//        }
+        item {
+            animationResults?.let {
+                ImageList(
+                    it,
+                    "Animation",
+                    onItemClick,
+                    modifier = Modifier.height(360.dp)
+                )
             }
-            item {
-                upcomingResults?.let {
-                    ImageList(
-                        it,
-                        "Upcoming",
-                        onItemClick,
-                        modifier = Modifier.height(360.dp)
-                    )
-                }
+        }
+        item {
+            upcomingResults?.let {
+                ImageList(
+                    it,
+                    "Upcoming",
+                    onItemClick,
+                    modifier = Modifier.height(360.dp)
+                )
             }
-            item {
-                topRatedResults?.let {
-                    ImageList(
-                        it,
-                        "Top Rated",
-                        onItemClick,
-                        modifier = Modifier.height(360.dp)
-                    )
-                }
+        }
+        item {
+            topRatedResults?.let {
+                ImageList(
+                    it,
+                    "Top Rated",
+                    onItemClick,
+                    modifier = Modifier.height(360.dp)
+                )
             }
-            item {
-                popularResults?.let {
-                    ImageList(
-                        it,
-                        "Popular",
-                        onItemClick,
-                        modifier = Modifier.height(360.dp)
-                    )
-                }
+        }
+        item {
+            popularResults?.let {
+                ImageList(
+                    it,
+                    "Popular",
+                    onItemClick,
+                    modifier = Modifier.height(360.dp)
+                )
             }
         }
     }
 }
+
 
 
 
