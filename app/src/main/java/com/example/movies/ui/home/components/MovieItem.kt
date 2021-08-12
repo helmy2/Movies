@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -20,7 +21,7 @@ import com.google.accompanist.placeholder.material.placeholder
 
 
 @Composable
-fun ImageCard(
+fun MovieItem(
     url: String,
     title: String,
     rating: Float,
@@ -38,7 +39,9 @@ fun ImageCard(
     if (painter.state is ImagePainter.State.Success)
         placeholder = false
 
-    Card(modifier = modifier.aspectRatio(.52f)) {
+    Card(modifier = modifier
+        .aspectRatio(.52f)
+        .clip(RoundedCornerShape(10.dp))) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -47,7 +50,6 @@ fun ImageCard(
                 contentDescription = title,
                 modifier = Modifier
                     .aspectRatio(.7f)
-                    .clip(RoundedCornerShape(10.dp))
                     .placeholder(placeholder),
                 contentScale = ContentScale.Crop
             )
@@ -68,7 +70,7 @@ fun ImageCard(
                         .padding(horizontal = 8.dp)
                 ) {
                     Ratingbar(
-                        "%.1f".format(rating).toFloat(),
+                        rating,
                         modifier = Modifier
                             .weight(7f)
                             .placeholder(placeholder)
@@ -76,8 +78,9 @@ fun ImageCard(
                     )
                     Spacer(modifier = Modifier.weight(1f))
                     Text(
-                        text = rating.toString(),
+                        text = "%.1f".format(rating),
                         textAlign = TextAlign.End,
+                        fontWeight = FontWeight.Bold,
                         modifier = Modifier
                             .weight(2f)
                             .placeholder(placeholder),

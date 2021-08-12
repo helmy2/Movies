@@ -15,7 +15,7 @@ fun Ratingbar(
     rating: Float,
     modifier: Modifier = Modifier,
 ) {
-    var currentRating = rating
+    var currentRating = rating / 2
     Box(modifier = modifier.aspectRatio(5f)) {
         Row {
             for (i in 0 until 5) {
@@ -79,5 +79,5 @@ private fun starPath(starSize: Float, halfStar: Boolean): Path {
 @Composable
 @Preview
 private fun RatingbarPreview() {
-    Ratingbar(rating = 1f, Modifier.height(100.dp))
+    Ratingbar(rating = 3f, Modifier.height(100.dp))
 }

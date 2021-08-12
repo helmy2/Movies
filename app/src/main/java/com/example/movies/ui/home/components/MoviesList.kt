@@ -16,11 +16,11 @@ import com.example.movies.models.Result
 
 
 @Composable
-fun ImageList(
+fun MoviesList(
     results: List<Result>,
     title: String,
     onItemClick: (id: Int) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier
 ) {
 
     Column(modifier.padding(8.dp)) {
@@ -34,7 +34,7 @@ fun ImageList(
         )
         LazyRow {
             items(items = results) { result ->
-                ImageCard(
+                MovieItem(
                     url = MovieApi.IMAGE_URL + result.posterPath,
                     title = result.title,
                     rating = result.voteAverage.toFloat(),

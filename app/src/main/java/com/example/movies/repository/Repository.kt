@@ -1,18 +1,155 @@
 package com.example.movies.repository
 
 
+import android.util.Log
 import com.example.movies.api.MovieApi
+import com.example.movies.api.models.CastResponse
+import com.example.movies.models.Backdrop
+import com.example.movies.models.Cast
+import com.example.movies.models.Result
+import retrofit2.Response
 import javax.inject.Inject
+
+private const val TAG = "Repository"
 
 class Repository @Inject constructor(
     private val api: MovieApi,
 ) {
-    suspend fun getMovieDetails(id: Int) = api.getMovieDetails(id)
 
-    suspend fun getPopularMovies() = api.getPopularMovies()
-    suspend fun getNowPlayingMovies() = api.getNowPlayingMovies()
-    suspend fun getNowPlayingArabicMovies() = api.getNowPlayingArabicMovies()
-    suspend fun getTopRatedMovies() = api.getTopRatedMovies()
-    suspend fun getUpcomingMovies() = api.getUpcomingMovies()
-    suspend fun getAnimationMovies() = api.getAnimationMovies()
+    ////////////////////////////////// Details Screen //////////////////////////////////
+
+    suspend fun getMovieDetails(id: Int): Result? = try {
+        val response = api.getMovieDetails(id)
+        if (response.isSuccessful)
+            response.body()
+        else {
+            Log.i(TAG, "getMovieDetails: ${response.errorBody()}")
+            null
+        }
+    } catch (e: Exception) {
+        Log.i(TAG, "getMovieDetails: ${e.message}")
+        null
+    }
+
+    suspend fun getMovieCast(id: Int): List<Cast>? = try {
+        val response = api.getMovieCast(id)
+        if (response.isSuccessful)
+            response.body()?.cast
+        else {
+            Log.i(TAG, "getMovieCast: ${response.errorBody()}")
+            null
+        }
+    } catch (e: Exception) {
+        Log.i(TAG, "getMovieCast: ${e.message}")
+        null
+    }
+
+    suspend fun getMovieRecommendations(id: Int): List<Result>? = try {
+        val response = api.getMovieRecommendations(id)
+        if (response.isSuccessful)
+            response.body()?.results
+        else {
+            Log.i(TAG, "getMovieCast: ${response.errorBody()}")
+            null
+        }
+    } catch (e: Exception) {
+        Log.i(TAG, "getMovieCast: ${e.message}")
+        null
+    }
+
+    suspend fun getMovieCollection(id: Int): List<Result>? = try {
+        val response = api.getMovieCollection(id)
+        if (response.isSuccessful)
+            response.body()?.results
+        else {
+            Log.i(TAG, "getMovieCollection: ${response.errorBody()}")
+            null
+        }
+    } catch (e: Exception) {
+        Log.i(TAG, "getMovieCollection: ${e.message}")
+        null
+    }
+
+    suspend fun getMovieImages(id: Int): List<Backdrop>? = try {
+        val response = api.getMovieImages(id)
+        if (response.isSuccessful)
+            response.body()?.backdrops
+        else {
+            Log.i(TAG, "getMovieCollection: ${response.errorBody()}")
+            null
+        }
+    } catch (e: Exception) {
+        Log.i(TAG, "getMovieCollection: ${e.message}")
+        null
+    }
+
+
+    ////////////////////////////////// Home Screen //////////////////////////////////
+
+    suspend fun getPopularMovies(): List<Result>? = try {
+        val response = api.getPopularMovies()
+        if (response.isSuccessful)
+            response.body()?.results
+        else {
+            Log.i(TAG, "getPopularMovies: ${response.errorBody()}")
+            null
+        }
+    } catch (e: Exception) {
+        Log.i(TAG, "getPopularMovies: ${e.message}")
+        null
+    }
+
+    suspend fun getNowPlayingMovies(): List<Result>? = try {
+        val response = api.getNowPlayingMovies()
+        if (response.isSuccessful)
+            response.body()?.results
+        else {
+            Log.i(TAG, "getNowPlayingMovies: ${response.errorBody()}")
+            null
+        }
+    } catch (e: Exception) {
+        Log.i(TAG, "getNowPlayingMovies: ${e.message}")
+        null
+    }
+
+    suspend fun getTopRatedMovies(): List<Result>? = try {
+        val response = api.getTopRatedMovies()
+        if (response.isSuccessful)
+            response.body()?.results
+        else {
+            Log.i(TAG, "getTopRatedMovies: ${response.errorBody()}")
+            null
+        }
+    } catch (e: Exception) {
+        Log.i(TAG, "getTopRatedMovies: ${e.message}")
+        null
+    }
+
+    suspend fun getUpcomingMovies(): List<Result>? = try {
+        val response = api.getUpcomingMovies()
+        if (response.isSuccessful)
+            response.body()?.results
+        else {
+            Log.i(TAG, "getUpcomingMovies: ${response.errorBody()}")
+            null
+        }
+    } catch (e: Exception) {
+        Log.i(TAG, "getUpcomingMovies: ${e.message}")
+        null
+    }
+
+    suspend fun getAnimationMovies(): List<Result>? = try {
+        val response = api.getAnimationMovies()
+        if (response.isSuccessful)
+            response.body()?.results
+        else {
+            Log.i(TAG, "getAnimationMovies: ${response.errorBody()}")
+            null
+        }
+    } catch (e: Exception) {
+        Log.i(TAG, "getAnimationMovies: ${e.message}")
+        null
+    }
+
+
 }

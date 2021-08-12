@@ -3,18 +3,10 @@ package com.example.movies.ui.home.components
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.movies.api.MovieApi
 import com.example.movies.models.Result
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -27,7 +19,7 @@ import kotlin.math.absoluteValue
 
 @ExperimentalPagerApi
 @Composable
-fun MainImageList(
+fun PagerList(
     results: List<Result>,
     onItemClick: (id: Int) -> Unit,
     modifier: Modifier = Modifier
@@ -43,7 +35,7 @@ fun MainImageList(
 
     Column(modifier) {
         HorizontalPager(state = pagerState, modifier = Modifier.fillMaxWidth()) { page ->
-            MainImageCard(
+            PagerItem(
                 posterUrl = MovieApi.IMAGE_URL + results[page].posterPath,
                 backgroundUrl = MovieApi.IMAGE_URL_ORIGINAL + results[page].backdropPath,
                 rating = results[page].voteAverage.toFloat(),

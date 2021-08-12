@@ -21,7 +21,7 @@ import com.example.movies.ui.util.Ratingbar
 import com.google.accompanist.placeholder.material.placeholder
 
 @Composable
-fun MainImageCard(
+fun PagerItem(
     posterUrl: String,
     backgroundUrl: String,
     rating: Float,
@@ -88,14 +88,14 @@ fun MainImageCard(
                         .fillMaxWidth(.7f)
                 ) {
                     Ratingbar(
-                        "%.1f".format(rating).toFloat(),
+                        rating,
                         modifier = Modifier
                             .weight(7f)
                             .placeholder(placeholder)
                     )
                     Spacer(modifier = Modifier.weight(1f))
                     Text(
-                        text = rating.toString(),
+                        text = "%.1f".format(rating),
                         textAlign = TextAlign.End,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier

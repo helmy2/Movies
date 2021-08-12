@@ -1,6 +1,8 @@
 package com.example.movies.ui.util
 
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -14,10 +16,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 
 @ExperimentalPagerApi
 @Composable
-fun Navigation(
-    homeViewModel: HomeViewModel = viewModel(),
-    detailsViewModel: DetailsViewModel = viewModel()
-) {
+fun Navigation() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
@@ -27,13 +26,24 @@ fun Navigation(
             SplashScreen(navController = navController)
         }
         composable(Screen.HomeScreen.route) {
+            val homeViewModel: HomeViewModel = hiltViewModel()
+
             HomeScreen(onItemClick = { id ->
                 navController.navigate(Screen.DetailsScreen.route + "/$id")
             }, homeViewModel)
         }
         composable(Screen.DetailsScreen.route + "/{id}") { navBackStack ->
+            val detailsViewModel: DetailsViewModel = hiltViewModel()
             val id = navBackStack.arguments?.getString("id")!!.toInt()
-            DetailsScreen(viewModel = detailsViewModel, id = id)
+
+            DetailsScreen(
+                viewModel = detailsViewModel,
+                id = id,
+                onMovieClick = {
+                    navController.navigate(Screen.DetailsScreen.route + "/$it")
+                },
+                onCastClick = {}
+            )
         }
     }
 }

@@ -9,7 +9,7 @@ data class Result(
     @SerializedName("backdrop_path")
     val backdropPath: String,
     @SerializedName("belongs_to_collection")
-    val belongsToCollection: Any,
+    val belongsToCollection: Collection,
     @SerializedName("budget")
     val budget: Int,
     @SerializedName("genres")
