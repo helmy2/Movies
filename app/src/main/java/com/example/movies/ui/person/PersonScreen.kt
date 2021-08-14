@@ -1,6 +1,7 @@
 package com.example.movies.ui.person
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
@@ -13,8 +14,8 @@ import com.example.movies.models.Image
 import com.example.movies.models.Person
 import com.example.movies.models.Result
 import com.example.movies.ui.details.components.ImageList
-import com.example.movies.ui.details.components.PersonInf
 import com.example.movies.ui.home.components.MoviesList
+import com.example.movies.ui.person.components.PersonInf
 
 @Composable
 fun PersonScreen(
