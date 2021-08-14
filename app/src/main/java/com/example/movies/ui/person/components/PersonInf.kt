@@ -1,4 +1,4 @@
-package com.example.movies.ui.details.components
+package com.example.movies.ui.person.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
