@@ -4,7 +4,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movies.models.Backdrop
+import com.example.movies.models.Image
 import com.example.movies.models.Cast
 import com.example.movies.models.Result
 import com.example.movies.repository.Repository
@@ -31,7 +31,7 @@ class DetailsViewModel @Inject constructor(
     var collectionList: MutableState<List<Result>?> = mutableStateOf(null)
         private set
 
-    var imageList: MutableState<List<Backdrop>?> = mutableStateOf(null)
+    var imageList: MutableState<List<Image>?> = mutableStateOf(null)
         private set
 
     private fun getMovieDetails(id: Int) = viewModelScope.launch {

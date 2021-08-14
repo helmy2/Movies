@@ -3,7 +3,7 @@ package com.example.movies.models
 
 import com.google.gson.annotations.SerializedName
 
-data class Backdrop(
+data class Image(
     @SerializedName("aspect_ratio")
     val aspectRatio: Double,
     @SerializedName("file_path")
@@ -17,5 +17,7 @@ data class Backdrop(
     @SerializedName("vote_count")
     val voteCount: Int,
     @SerializedName("width")
-    val width: Int
+    val width: Int,
+    @SerializedName("media")
+    val results: Result
 )

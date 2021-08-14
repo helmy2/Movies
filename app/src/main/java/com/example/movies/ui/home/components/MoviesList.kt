@@ -34,14 +34,15 @@ fun MoviesList(
         )
         LazyRow {
             items(items = results) { result ->
-                MovieItem(
-                    url = MovieApi.IMAGE_URL + result.posterPath,
-                    title = result.title,
-                    rating = result.voteAverage.toFloat(),
-                    modifier = Modifier
-                        .padding(horizontal = 8.dp)
-                        .clickable { onItemClick(result.id) }
-                )
+                if (result.posterPath != null)
+                    MovieItem(
+                        url = MovieApi.IMAGE_URL + result.posterPath,
+                        title = result.title,
+                        rating = result.voteAverage.toFloat(),
+                        modifier = Modifier
+                            .padding(horizontal = 8.dp)
+                            .clickable { onItemClick(result.id) }
+                    )
             }
         }
     }

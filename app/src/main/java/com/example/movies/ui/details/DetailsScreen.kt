@@ -12,7 +12,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.movies.models.Backdrop
+import com.example.movies.models.Image
 import com.example.movies.models.Cast
 import com.example.movies.models.Result
 import com.example.movies.ui.details.components.CastList
@@ -56,7 +56,7 @@ fun DetailsScreenComponents(
     castList: List<Cast>?,
     recommendationsList: List<Result>?,
     collectionList: List<Result>?,
-    imageList: List<Backdrop>?,
+    imageList: List<Image>?,
     onMovieClick: (id: Int) -> Unit,
     onCastClick: (id: Int) -> Unit
 ) {

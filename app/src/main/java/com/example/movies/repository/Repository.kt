@@ -3,11 +3,10 @@ package com.example.movies.repository
 
 import android.util.Log
 import com.example.movies.api.MovieApi
-import com.example.movies.api.models.CastResponse
-import com.example.movies.models.Backdrop
+import com.example.movies.models.Image
 import com.example.movies.models.Cast
+import com.example.movies.models.Person
 import com.example.movies.models.Result
-import retrofit2.Response
 import javax.inject.Inject
 
 private const val TAG = "Repository"
@@ -70,10 +69,10 @@ class Repository @Inject constructor(
         null
     }
 
-    suspend fun getMovieImages(id: Int): List<Backdrop>? = try {
+    suspend fun getMovieImages(id: Int): List<Image>? = try {
         val response = api.getMovieImages(id)
         if (response.isSuccessful)
-            response.body()?.backdrops
+            response.body()?.images
         else {
             Log.i(TAG, "getMovieCollection: ${response.errorBody()}")
             null
@@ -148,6 +147,47 @@ class Repository @Inject constructor(
         }
     } catch (e: Exception) {
         Log.i(TAG, "getAnimationMovies: ${e.message}")
+        null
+    }
+
+    ////////////////////////////////// Person Screen //////////////////////////////////
+
+    suspend fun getPersonDetails(id: Int): Person? = try {
+        val response = api.getPersonDetails(id)
+        if (response.isSuccessful)
+            response.body()
+        else {
+            Log.i(TAG, "getPersonDetails: ${response.errorBody()}")
+            null
+        }
+    } catch (e: Exception) {
+        Log.i(TAG, "getPersonDetails: ${e.message}")
+        null
+    }
+
+    suspend fun getMovieCredits(id: Int): List<Result>? = try {
+        val response = api.getMovieCredits(id)
+        if (response.isSuccessful)
+            response.body()?.result
+        else {
+            Log.i(TAG, "getMovieCredit: ${response.errorBody()}")
+            null
+        }
+    } catch (e: Exception) {
+        Log.i(TAG, "getMovieCredit: ${e.message}")
+        null
+    }
+
+    suspend fun getTaggedImages(id: Int): List<Image>? = try {
+        val response = api.getTaggedImages(id)
+        if (response.isSuccessful)
+            response.body()?.images
+        else {
+            Log.i(TAG, "getTaggedImages: ${response.errorBody()}")
+            null
+        }
+    } catch (e: Exception) {
+        Log.i(TAG, "getPersonDetails: ${e.message}")
         null
     }
 

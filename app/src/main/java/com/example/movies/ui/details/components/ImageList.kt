@@ -12,10 +12,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.movies.api.MovieApi
-import com.example.movies.models.Backdrop
+import com.example.movies.models.Image
 
 @Composable
-fun ImageList(imageList: List<Backdrop>, title: String) {
+fun ImageList(imageList: List<Image>, title: String) {
     Column(Modifier.padding(16.dp)) {
         Text(
             text = title,
