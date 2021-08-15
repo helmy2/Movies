@@ -7,10 +7,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.movies.ui.details.DetailsScreen
 import com.example.movies.ui.details.DetailsViewModel
-import com.example.movies.ui.home.HomeViewModel
 import com.example.movies.ui.home.HomeScreen
+import com.example.movies.ui.home.HomeViewModel
 import com.example.movies.ui.person.PersonScreen
 import com.example.movies.ui.person.PersonViewModel
+import com.example.movies.ui.search.SearchScreen
+import com.example.movies.ui.search.SearchViewModel
 import com.example.movies.ui.splash.SplashScreen
 import com.google.accompanist.pager.ExperimentalPagerApi
 
@@ -20,7 +22,7 @@ fun Navigation() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = Screen.SplashScreen.route
+        startDestination = Screen.SplashScreen.route,
     ) {
         composable(Screen.SplashScreen.route) {
             SplashScreen(navController = navController)
@@ -28,9 +30,13 @@ fun Navigation() {
         composable(Screen.HomeScreen.route) {
             val homeViewModel: HomeViewModel = hiltViewModel()
 
-            HomeScreen(onItemClick = { id ->
-                navController.navigate(Screen.DetailsScreen.route + "/$id")
-            }, homeViewModel)
+            HomeScreen(
+                onMovieClick = { id ->
+                    navController.navigate(Screen.DetailsScreen.route + "/$id")
+                }, onSearchClick = {
+                    navController.navigate(Screen.SearchScreen.route)
+                }, homeViewModel
+            )
         }
         composable(Screen.DetailsScreen.route + "/{id}") { navBackStack ->
             val detailsViewModel: DetailsViewModel = hiltViewModel()
@@ -48,18 +54,27 @@ fun Navigation() {
             )
         }
         composable(Screen.PersonScreen.route + "/{id}") { navBackStack ->
-            val detailsViewModel: PersonViewModel = hiltViewModel()
+            val viewModel: PersonViewModel = hiltViewModel()
             val id = navBackStack.arguments?.getString("id")!!.toInt()
 
             PersonScreen(
-                viewModel = detailsViewModel,
+                viewModel = viewModel,
                 id = id,
                 onMovieClick = {
                     navController.navigate(Screen.DetailsScreen.route + "/$it")
                 }
             )
         }
+        composable(Screen.SearchScreen.route) { navBackStack ->
+            val viewModel: SearchViewModel = hiltViewModel()
 
-
+            SearchScreen(
+                viewModel = viewModel,
+                onMovieClick = {
+                    navController.navigate(Screen.DetailsScreen.route + "/$it")
+                }
+            )
+        }
     }
 }
+

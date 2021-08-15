@@ -191,5 +191,18 @@ class Repository @Inject constructor(
         null
     }
 
+////////////////////////////////////////////////////////////////////
 
+    suspend fun searchMovie(query:String): List<Result>? = try {
+        val response = api.searchMovie(query )
+        if (response.isSuccessful)
+            response.body()?.results
+        else {
+            Log.i(TAG, "getTaggedImages: ${response.errorBody()}")
+            null
+        }
+    } catch (e: Exception) {
+        Log.i(TAG, "getPersonDetails: ${e.message}")
+        null
+    }
 }

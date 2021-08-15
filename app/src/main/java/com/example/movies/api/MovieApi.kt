@@ -65,11 +65,15 @@ interface MovieApi {
     @GET("person/{id}/tagged_images$API_KEY")
     suspend fun getTaggedImages(@Path("id") id: Int): Response<TaggedImagesResponse>
 
+    /////////////////////////////////////////////
+
+    @GET("search/movie$API_KEY")
+    suspend fun searchMovie(@Query("query") query: String):Response<ResultResponse>
+
+
 //    @GET("trending/all/{time_window}$API_KEY")
 //    suspend fun getTrending(@Path("time_window") timeWindow: String): ResultResponse
 //
-//    @GET("search/multi$API_KEY")
-//    suspend fun getSearch(@Query("query") query: String): ResultResponse
 
 
 //    @GET("tv/{id}/images$API_KEY")
