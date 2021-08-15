@@ -26,20 +26,20 @@ fun PersonScreen(
     LaunchedEffect(key1 = true) {
         viewModel.getPersonDetails(id)
         viewModel.getMovieCredits(id)
-        viewModel.getTaggedImages(id)
+        viewModel.getPersonImages(id)
     }
     val personResult by viewModel.personResult
     val creditResult by viewModel.creditsResult
-    val taggedImagesResult by viewModel.taggedImagesResult
+    val personImagesResult by viewModel.personImagesResult
 
-    PersonScreenComponent(personResult, creditResult, taggedImagesResult, onMovieClick)
+    PersonScreenComponent(personResult, creditResult, personImagesResult, onMovieClick)
 }
 
 @Composable
 fun PersonScreenComponent(
     person: Person?,
     creditResult: List<Result>?,
-    taggedImages: List<Image>?,
+    Images: List<Image>?,
     onMovieClick: (id: Int) -> Unit,
 ) {
     Column(
@@ -48,6 +48,10 @@ fun PersonScreenComponent(
         person?.let {
             PersonInf(person = person)
         }
+        Images?.let {
+            if (Images.isNotEmpty())
+                ImageList(imageList = it, title = "Tagged Image",height = 250.dp)
+        }
         creditResult?.let {
             MoviesList(
                 results = it,
@@ -55,10 +59,6 @@ fun PersonScreenComponent(
                 onItemClick = onMovieClick,
                 modifier = Modifier.height(360.dp)
             )
-        }
-        taggedImages?.let {
-            if (taggedImages.isNotEmpty())
-                ImageList(imageList = it, title = "Tagged Image")
         }
     }
 }

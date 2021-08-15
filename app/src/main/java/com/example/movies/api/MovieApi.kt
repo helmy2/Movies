@@ -62,8 +62,8 @@ interface MovieApi {
     @GET("person/{id}/movie_credits$API_KEY")
     suspend fun getMovieCredits(@Path("id") id: Int): Response<CreditResponse>
 
-    @GET("person/{id}/tagged_images$API_KEY")
-    suspend fun getTaggedImages(@Path("id") id: Int): Response<TaggedImagesResponse>
+    @GET("person/{id}/images$API_KEY")
+    suspend fun getPersonImages(@Path("id") id: Int): Response<ImagesResponse>
 
     /////////////////////////////////////////////
 

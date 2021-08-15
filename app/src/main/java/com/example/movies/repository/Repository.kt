@@ -178,16 +178,16 @@ class Repository @Inject constructor(
         null
     }
 
-    suspend fun getTaggedImages(id: Int): List<Image>? = try {
-        val response = api.getTaggedImages(id)
+    suspend fun getPersonImages(id: Int): List<Image>? = try {
+        val response = api.getPersonImages(id)
         if (response.isSuccessful)
-            response.body()?.images
+            response.body()?.profiles
         else {
-            Log.i(TAG, "getTaggedImages: ${response.errorBody()}")
+            Log.i(TAG, "getPersonImages: ${response.errorBody()}")
             null
         }
     } catch (e: Exception) {
-        Log.i(TAG, "getPersonDetails: ${e.message}")
+        Log.i(TAG, "getPersonImages: ${e.message}")
         null
     }
 

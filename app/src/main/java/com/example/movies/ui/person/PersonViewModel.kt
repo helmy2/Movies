@@ -27,7 +27,7 @@ class PersonViewModel @Inject constructor(
     var creditsResult: MutableState<List<Result>?> = mutableStateOf(null)
         private set
 
-    var taggedImagesResult: MutableState<List<Image>?> = mutableStateOf(null)
+    var personImagesResult: MutableState<List<Image>?> = mutableStateOf(null)
         private set
 
 
@@ -40,8 +40,8 @@ class PersonViewModel @Inject constructor(
         creditsResult.value = repository.getMovieCredits(id)
     }
 
-    fun getTaggedImages(id: Int) = viewModelScope.launch {
-        taggedImagesResult.value = repository.getTaggedImages(id)
+    fun getPersonImages(id: Int) = viewModelScope.launch {
+        personImagesResult.value = repository.getPersonImages(id)
     }
 
 }

@@ -9,13 +9,14 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.movies.api.MovieApi
 import com.example.movies.models.Image
 
 @Composable
-fun ImageList(imageList: List<Image>, title: String) {
+fun ImageList(imageList: List<Image>, title: String, height: Dp = 150.dp) {
     Column(Modifier.padding(16.dp)) {
         Text(
             text = title,
@@ -30,7 +31,7 @@ fun ImageList(imageList: List<Image>, title: String) {
                 ImageItem(
                     MovieApi.IMAGE_URL + it.filePath, it.width / it.height.toFloat(),
                     Modifier
-                        .height(150.dp)
+                        .height(height)
                 )
             }
         }
