@@ -18,6 +18,7 @@ import com.example.movies.ui.util.toHourFormat
 @Composable
 fun TopComponent(
     result: Result,
+    onGenreClick: (id: Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val painter = rememberImagePainter(
@@ -59,7 +60,8 @@ fun TopComponent(
             voteCount = result.voteCount.toString(),
             releaseDate = result.releaseDate,
             voteAverage = "%.1f".format(result.voteAverage).toFloat(),
-            modifier = Modifier.align(Alignment.BottomCenter)
+            onGenreClick = onGenreClick,
+            modifier = Modifier.align(Alignment.BottomCenter),
         )
     }
 }

@@ -27,7 +27,8 @@ fun DetailsScreen(
     viewModel: DetailsViewModel = viewModel(),
     id: Int,
     onMovieClick: (id: Int) -> Unit,
-    onCastClick: (id: Int) -> Unit
+    onCastClick: (id: Int) -> Unit,
+    onGenreClick: (id: Int) -> Unit,
 ) {
     LaunchedEffect(key1 = true) {
         viewModel.getDetails(id)
@@ -46,7 +47,8 @@ fun DetailsScreen(
         collectionList,
         imageList,
         onMovieClick,
-        onCastClick
+        onCastClick,
+        onGenreClick
     )
 }
 
@@ -58,40 +60,42 @@ fun DetailsScreenComponents(
     collectionList: List<Result>?,
     imageList: List<Image>?,
     onMovieClick: (id: Int) -> Unit,
-    onCastClick: (id: Int) -> Unit
+    onCastClick: (id: Int) -> Unit,
+    onGenreClick: (id: Int) -> Unit,
 ) {
     Column(
         modifier = Modifier.verticalScroll(state = rememberScrollState(), enabled = true)
     ) {
         result?.let {
-            TopComponent(result = result)
+            TopComponent(result = it, onGenreClick)
 
             Column(modifier = Modifier.padding(horizontal = 16.dp)) {
                 Text(text = "STORYLINE", fontWeight = FontWeight.Bold)
-                Text(text = result.overview)
+                Text(text = it.overview)
             }
         }
         castList?.let {
-            CastList(castList,onCastClick)
+            CastList(it, onCastClick)
         }
         collectionList?.let {
             MoviesList(
-                results = collectionList,
+                results = it,
                 title = "Collection",
                 onItemClick = onMovieClick,
                 modifier = Modifier.height(360.dp)
             )
         }
         imageList?.let {
-            ImageList(it,"Image")
+            ImageList(it, "Image")
         }
         recommendationsList?.let {
-            MoviesList(
-                results = recommendationsList,
-                title = "Recommendations",
-                onItemClick = onMovieClick,
-                modifier = Modifier.height(360.dp)
-            )
+            if (it.isNotEmpty())
+                MoviesList(
+                    results = it,
+                    title = "Recommendations",
+                    onItemClick = onMovieClick,
+                    modifier = Modifier.height(360.dp)
+                )
         }
     }
 }
@@ -107,7 +111,8 @@ fun DetailsScreenPreview() {
             collectionList = DemoMovieDataProvider.movies,
             imageList = null,
             onMovieClick = {},
-            onCastClick = {}
+            onCastClick = {},
+            onGenreClick = {},
         )
     }
 }

@@ -1,5 +1,6 @@
 package com.example.movies.api
 
+import androidx.compose.runtime.MutableState
 import com.example.movies.api.models.*
 import com.example.movies.models.Collection
 import com.example.movies.models.Person
@@ -68,17 +69,20 @@ interface MovieApi {
     /////////////////////////////////////////////
 
     @GET("search/movie$API_KEY")
-    suspend fun searchMovie(@Query("query") query: String):Response<ResultResponse>
+    suspend fun searchMovie(@Query("query") query: String): Response<ResultResponse>
 
 
-//    @GET("trending/all/{time_window}$API_KEY")
-//    suspend fun getTrending(@Path("time_window") timeWindow: String): ResultResponse
-//
+    @GET("search/person$API_KEY")
+    suspend fun searchPerson(@Query("query") query: String): Response<PersonResponse>
 
+    ////////////////////////////////////////////
 
-//    @GET("tv/{id}/images$API_KEY")
-//    suspend fun getTVImages(@Path("id") id: Int): ImagesResponse
+    @GET("discover/movie$API_KEY")
+    suspend fun getMovieGenres(
+        @Query("with_genres") genresId: Int,
+        @Query("page") pageNumber: Int
+    ): Response<GenresResponse>
 
-//    @GET("person/{id}/images$API_KEY")
-//    suspend fun getPersonImages(@Path("id") id: Int): ImagesResponse
+//    ?api_key=baf62556ad57430e7e61c1ace8490114&sort_by=popularity.desc&with_genres=28
+
 }

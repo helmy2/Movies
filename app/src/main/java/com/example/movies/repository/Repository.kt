@@ -205,4 +205,32 @@ class Repository @Inject constructor(
         Log.i(TAG, "getPersonDetails: ${e.message}")
         null
     }
+    suspend fun searchPerson(query:String): List<Cast>? = try {
+        val response = api.searchPerson(query )
+        if (response.isSuccessful)
+            response.body()?.results
+        else {
+            Log.i(TAG, "searchPerson: ${response.errorBody()}")
+            null
+        }
+    } catch (e: Exception) {
+        Log.i(TAG, "searchPerson: ${e.message}")
+        null
+    }
+
+    ////////////////////////////////////////////////
+
+    suspend fun getMovieGenres(genreId: Int, pageNumber: Int): List<Result>? = try {
+        val response = api.getMovieGenres(genreId,pageNumber)
+        if (response.isSuccessful)
+            response.body()?.results
+        else {
+            Log.i(TAG, "searchPerson: ${response.errorBody()}")
+            null
+        }
+    } catch (e: Exception) {
+        Log.i(TAG, "searchPerson: ${e.message}")
+        null
+    }
+
 }

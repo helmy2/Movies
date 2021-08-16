@@ -22,7 +22,7 @@ import coil.compose.rememberImagePainter
 fun CastItem(
     url: String,
     name: String,
-    character: String,
+    character: String?,
     modifier: Modifier
 ) {
     val painter = rememberImagePainter(
@@ -51,13 +51,15 @@ fun CastItem(
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
             )
-            Text(
-                text = character,
-                fontSize = 12.sp,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.padding(8.dp)
-            )
+            character?.let {
+                Text(
+                    text = character,
+                    fontSize = 12.sp,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.padding(8.dp)
+                )
+            }
         }
     }
 }

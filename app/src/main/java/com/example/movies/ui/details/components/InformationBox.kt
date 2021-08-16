@@ -1,5 +1,6 @@
 package com.example.movies.ui.details.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -21,6 +22,7 @@ fun InformationBox(
     releaseDate: String,
     voteAverage: Float,
     voteCount: String,
+    onGenreClick: (id: Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -69,7 +71,7 @@ fun InformationBox(
             Text(text = runtime, modifier = Modifier.padding(end = 8.dp))
             LazyRow {
                 items(items = genres) {
-                    Chip(text = it.name)
+                    Chip(text = it.name, modifier = Modifier.clickable { onGenreClick(it.id) })
                 }
             }
         }

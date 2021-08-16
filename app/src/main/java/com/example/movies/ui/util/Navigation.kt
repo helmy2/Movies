@@ -7,6 +7,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.movies.ui.details.DetailsScreen
 import com.example.movies.ui.details.DetailsViewModel
+import com.example.movies.ui.discover.DiscoverScreen
+import com.example.movies.ui.discover.DiscoverViewModel
 import com.example.movies.ui.home.HomeScreen
 import com.example.movies.ui.home.HomeViewModel
 import com.example.movies.ui.person.PersonScreen
@@ -50,6 +52,9 @@ fun Navigation() {
                 },
                 onCastClick = {
                     navController.navigate(Screen.PersonScreen.route + "/$it")
+                },
+                onGenreClick = {
+                    navController.navigate(Screen.DiscoverScreen.route + "/$it")
                 }
             )
         }
@@ -71,6 +76,21 @@ fun Navigation() {
             SearchScreen(
                 viewModel = viewModel,
                 onMovieClick = {
+                    navController.navigate(Screen.DetailsScreen.route + "/$it")
+                },
+                onCastClick = {
+                    navController.navigate(Screen.PersonScreen.route + "/$it")
+                }
+            )
+        }
+        composable(Screen.DiscoverScreen.route + "/{id}") { navBackStack ->
+            val id = navBackStack.arguments?.getString("id")!!.toInt()
+            val viewModel: DiscoverViewModel = hiltViewModel()
+
+            DiscoverScreen(
+                id,
+                viewModel,
+                onItemClick = {
                     navController.navigate(Screen.DetailsScreen.route + "/$it")
                 }
             )
