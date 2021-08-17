@@ -1,26 +1,10 @@
 package com.example.movies.ui.details
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.movies.models.Image
-import com.example.movies.models.Cast
-import com.example.movies.models.Result
-import com.example.movies.ui.details.components.CastList
-import com.example.movies.ui.details.components.ImageList
-import com.example.movies.ui.details.components.TopComponent
-import com.example.movies.ui.home.components.MoviesList
-import com.example.movies.ui.theme.MoviesTheme
-import com.example.movies.util.DemoMovieDataProvider
+import com.example.movies.ui.details.components.DetailsScreenComponents
 
 @Composable
 fun DetailsScreen(
@@ -52,67 +36,3 @@ fun DetailsScreen(
     )
 }
 
-@Composable
-fun DetailsScreenComponents(
-    result: Result?,
-    castList: List<Cast>?,
-    recommendationsList: List<Result>?,
-    collectionList: List<Result>?,
-    imageList: List<Image>?,
-    onMovieClick: (id: Int) -> Unit,
-    onCastClick: (id: Int) -> Unit,
-    onGenreClick: (id: Int) -> Unit,
-) {
-    Column(
-        modifier = Modifier.verticalScroll(state = rememberScrollState(), enabled = true)
-    ) {
-        result?.let {
-            TopComponent(result = it, onGenreClick)
-
-            Column(modifier = Modifier.padding(horizontal = 16.dp)) {
-                Text(text = "STORYLINE", fontWeight = FontWeight.Bold)
-                Text(text = it.overview)
-            }
-        }
-        castList?.let {
-            CastList(it, onCastClick)
-        }
-        collectionList?.let {
-            MoviesList(
-                results = it,
-                title = "Collection",
-                onItemClick = onMovieClick,
-                modifier = Modifier.height(360.dp)
-            )
-        }
-        imageList?.let {
-            ImageList(it, "Image")
-        }
-        recommendationsList?.let {
-            if (it.isNotEmpty())
-                MoviesList(
-                    results = it,
-                    title = "Recommendations",
-                    onItemClick = onMovieClick,
-                    modifier = Modifier.height(360.dp)
-                )
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DetailsScreenPreview() {
-    MoviesTheme(darkTheme = true) {
-        DetailsScreenComponents(
-            result = DemoMovieDataProvider.movie,
-            castList = DemoMovieDataProvider.castList,
-            recommendationsList = DemoMovieDataProvider.movies,
-            collectionList = DemoMovieDataProvider.movies,
-            imageList = null,
-            onMovieClick = {},
-            onCastClick = {},
-            onGenreClick = {},
-        )
-    }
-}

@@ -29,7 +29,7 @@ fun SearchScreenComponents(
             personResults?.let {
                 if (it.isNotEmpty())
                     SearchPersonList(
-                        castList = it,
+                        castList = it.filter { it.profilePath != null },
                         onItemClick = onCastClick,
                         onEndItem = onEndItem
                     )

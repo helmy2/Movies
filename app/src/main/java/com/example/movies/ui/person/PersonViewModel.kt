@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.movies.models.Image
 import com.example.movies.models.Person
 import com.example.movies.models.Result
-import com.example.movies.repository.Repository
+import com.example.movies.repository.PersonRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,7 +18,7 @@ private const val TAG = "PersonViewModel"
 
 @HiltViewModel
 class PersonViewModel @Inject constructor(
-    private val repository: Repository
+    private val repository: PersonRepository
 ) : ViewModel() {
 
     var personResult: MutableState<Person?> = mutableStateOf(null)

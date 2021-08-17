@@ -9,17 +9,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun InfoCard(title: String, body: String) {
-    Text(
-        text = title,
-        fontSize = 20.sp,
-        fontWeight = FontWeight.Bold,
-        modifier = Modifier
-            .padding(start = 16.dp, top = 16.dp)
-    )
-    Text(
-        text = body,
-        modifier = Modifier
-            .padding(start = 16.dp, top = 8.dp)
-    )
+fun InfoCard(title: String, body: String?) {
+    body?.let {
+        Text(
+            text = title,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .padding(start = 16.dp, top = 16.dp)
+        )
+        Text(
+            text = it,
+            modifier = Modifier
+                .padding(start = 16.dp, top = 8.dp)
+        )
+    }
 }

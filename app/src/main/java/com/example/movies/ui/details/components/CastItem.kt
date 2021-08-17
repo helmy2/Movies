@@ -49,7 +49,7 @@ fun CastItem(
                 text = name,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
+                modifier = Modifier.padding(8.dp)
             )
             character?.let {
                 Text(
@@ -57,7 +57,7 @@ fun CastItem(
                     fontSize = 12.sp,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.padding(8.dp)
+                    modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
                 )
             }
         }

@@ -12,17 +12,9 @@ import androidx.compose.runtime.Composable
 @Composable
 fun HomeAppBar(
     onActionsClick: () -> Unit,
-    onNavigationClick: () -> Unit
 ) {
     TopAppBar(
-        navigationIcon = {
-            IconButton(onClick = onNavigationClick) {
-                Icon(
-                    Icons.Filled.Menu,
-                    null,
-                )
-            }
-        },
+        navigationIcon = {},
         actions = {
             IconButton(onClick = onActionsClick) {
                 Icon(

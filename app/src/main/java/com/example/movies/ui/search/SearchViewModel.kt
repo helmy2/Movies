@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movies.models.Cast
 import com.example.movies.models.Result
-import com.example.movies.repository.Repository
+import com.example.movies.repository.SearchRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val repository: Repository
+    private val repository: SearchRepository
 ) : ViewModel() {
 
     var movieResults: MutableState<List<Result>?> = mutableStateOf(null)

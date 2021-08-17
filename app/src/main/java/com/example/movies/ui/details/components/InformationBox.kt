@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.movies.models.Genre
 import com.example.movies.ui.util.Ratingbar
+import com.example.movies.util.toYearFormat
 
 @Composable
 fun InformationBox(
@@ -36,11 +37,11 @@ fun InformationBox(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Bottom
         ) {
-            Chip(
-                text = releaseDate
-                    .substring(startIndex = 0, endIndex = 4),
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
+                Chip(
+                    text = releaseDate.toYearFormat(),
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+
             Row(modifier = Modifier.fillMaxWidth(.6f), verticalAlignment = Alignment.Bottom) {
                 Column(
                     Modifier
@@ -77,3 +78,5 @@ fun InformationBox(
         }
     }
 }
+
+

@@ -31,7 +31,7 @@ fun HomeScreen(
     val animationResults by remember { viewModel.animationResults }
 
     Scaffold(
-        topBar = { HomeAppBar(onActionsClick = onSearchClick, onNavigationClick = {}) }
+        topBar = { HomeAppBar(onActionsClick = onSearchClick) }
     ) {
         Column(
             modifier = Modifier.verticalScroll(state = rememberScrollState(), enabled = true)

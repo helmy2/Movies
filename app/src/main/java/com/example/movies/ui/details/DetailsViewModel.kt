@@ -4,19 +4,17 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movies.models.Image
 import com.example.movies.models.Cast
+import com.example.movies.models.Image
 import com.example.movies.models.Result
-import com.example.movies.repository.Repository
+import com.example.movies.repository.DetailsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-private const val TAG = "DetailsViewModel"
-
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
-    private val repository: Repository
+    private val repository: DetailsRepository
 ) : ViewModel() {
 
     var results: MutableState<Result?> = mutableStateOf(null)
