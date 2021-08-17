@@ -13,7 +13,7 @@ import androidx.compose.ui.layout.ContentScale
 import coil.compose.rememberImagePainter
 import com.example.movies.api.MovieApi
 import com.example.movies.models.Result
-import com.example.movies.ui.util.toHourFormat
+import com.example.movies.util.toHourFormat
 
 @Composable
 fun TopComponent(

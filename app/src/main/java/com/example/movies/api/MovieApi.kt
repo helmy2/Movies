@@ -1,6 +1,5 @@
 package com.example.movies.api
 
-import androidx.compose.runtime.MutableState
 import com.example.movies.api.models.*
 import com.example.movies.models.Collection
 import com.example.movies.models.Person
@@ -69,11 +68,17 @@ interface MovieApi {
     /////////////////////////////////////////////
 
     @GET("search/movie$API_KEY")
-    suspend fun searchMovie(@Query("query") query: String): Response<ResultResponse>
+    suspend fun searchMovie(
+        @Query("query") query: String,
+        @Query("page") pageNumber: Int
+    ): Response<ResultResponse>
 
 
     @GET("search/person$API_KEY")
-    suspend fun searchPerson(@Query("query") query: String): Response<PersonResponse>
+    suspend fun searchPerson(
+        @Query("query") query: String,
+        @Query("page") pageNumber: Int
+    ): Response<PersonResponse>
 
     ////////////////////////////////////////////
 

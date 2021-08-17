@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun Ratingbar(
     rating: Float,
-    modifier: Modifier = Modifier,
+    modifier: Modifier,
 ) {
     var currentRating = rating / 2
     Box(modifier = modifier.aspectRatio(5f)) {

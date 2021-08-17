@@ -193,8 +193,8 @@ class Repository @Inject constructor(
 
 ////////////////////////////////////////////////////////////////////
 
-    suspend fun searchMovie(query:String): List<Result>? = try {
-        val response = api.searchMovie(query )
+    suspend fun searchMovie(query: String, pageNumber: Int = 1): List<Result>? = try {
+        val response = api.searchMovie(query, pageNumber)
         if (response.isSuccessful)
             response.body()?.results
         else {
@@ -205,8 +205,9 @@ class Repository @Inject constructor(
         Log.i(TAG, "getPersonDetails: ${e.message}")
         null
     }
-    suspend fun searchPerson(query:String): List<Cast>? = try {
-        val response = api.searchPerson(query )
+
+    suspend fun searchPerson(query: String, pageNumber: Int = 1): List<Cast>? = try {
+        val response = api.searchPerson(query, pageNumber)
         if (response.isSuccessful)
             response.body()?.results
         else {
@@ -221,7 +222,7 @@ class Repository @Inject constructor(
     ////////////////////////////////////////////////
 
     suspend fun getMovieGenres(genreId: Int, pageNumber: Int): List<Result>? = try {
-        val response = api.getMovieGenres(genreId,pageNumber)
+        val response = api.getMovieGenres(genreId, pageNumber)
         if (response.isSuccessful)
             response.body()?.results
         else {

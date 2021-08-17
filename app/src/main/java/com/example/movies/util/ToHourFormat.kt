@@ -1,4 +1,4 @@
-package com.example.movies.ui.util
+package com.example.movies.util
 
 fun Int.toHourFormat(): String {
     var minute = this

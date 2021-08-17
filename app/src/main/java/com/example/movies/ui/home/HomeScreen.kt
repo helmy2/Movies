@@ -17,7 +17,7 @@ import com.example.movies.ui.home.components.PagerList
 import com.google.accompanist.pager.ExperimentalPagerApi
 
 
-@ExperimentalPagerApi
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun HomeScreen(
     onMovieClick: (id: Int) -> Unit,

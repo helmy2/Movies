@@ -42,6 +42,8 @@ fun SearchAppBar(
                 textColor = MaterialTheme.colors.onBackground,
                 leadingIconColor = MaterialTheme.colors.onBackground,
                 backgroundColor = MaterialTheme.colors.background,
+                cursorColor = MaterialTheme.colors.onBackground,
+                focusedIndicatorColor = MaterialTheme.colors.onBackground
             ),
             keyboardActions = KeyboardActions(
                 onAny = {

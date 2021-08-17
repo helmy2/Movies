@@ -62,5 +62,4 @@ fun SplashScreen(
             .fillMaxSize()
             .scale(scale.value),
     )
-
 }
