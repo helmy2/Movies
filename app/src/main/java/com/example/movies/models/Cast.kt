@@ -9,9 +9,9 @@ data class Cast(
     @SerializedName("credit_id")
     val creditId: String,
     val id: Int,
-    val name: String,
+    val name: String = "",
     @SerializedName("profile_path")
-    val profilePath: String,
-    val character: String
+    val profilePath: String = "",
+    val character: String = ""
 )
 

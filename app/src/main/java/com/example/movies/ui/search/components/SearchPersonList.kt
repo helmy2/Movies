@@ -2,9 +2,7 @@ package com.example.movies.ui.search.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -14,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.example.movies.api.MovieApi
 import com.example.movies.models.Cast
 import com.example.movies.ui.details.components.CastItem
+import com.example.movies.ui.theme.Padding
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -36,10 +35,9 @@ fun SearchPersonList(
                     url = MovieApi.IMAGE_URL + result.profilePath,
                     name = result.name,
                     character = null,
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .clickable { onItemClick(result.id) }
-                )
+                    id = result.id,
+                    onItemClick = onItemClick,modifier = Modifier.padding(Padding.smallPadding))
+
                 if (index == castList.size - 1)
                     onEndItem()
             }

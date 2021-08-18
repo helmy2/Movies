@@ -50,7 +50,7 @@ fun PersonScreenComponent(
         }
         Images?.let {
             if (Images.isNotEmpty())
-                ImageList(imageList = it, title = "Tagged Image",height = 250.dp)
+                ImageList(imageList = it, title = "Tagged Image")
         }
         creditResult?.let {
             MoviesList(

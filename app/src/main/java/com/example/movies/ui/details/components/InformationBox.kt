@@ -1,6 +1,5 @@
 package com.example.movies.ui.details.components
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -12,6 +11,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.movies.models.Genre
+import com.example.movies.ui.theme.Padding
+import com.example.movies.ui.theme.Typography
+import com.example.movies.ui.util.Chip
 import com.example.movies.ui.util.Ratingbar
 import com.example.movies.util.toYearFormat
 
@@ -29,50 +31,47 @@ fun InformationBox(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp)
-            .padding(bottom = 16.dp)
+            .padding(all = Padding.largePadding)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Bottom
         ) {
-                Chip(
-                    text = releaseDate.toYearFormat(),
-                    modifier = Modifier.padding(bottom = 8.dp)
-                )
+            Chip(
+                text = releaseDate.toYearFormat(),
+                modifier = Modifier.padding(bottom = Padding.mediumPadding)
+            )
 
             Row(modifier = Modifier.fillMaxWidth(.6f), verticalAlignment = Alignment.Bottom) {
                 Column(
                     Modifier
                         .fillMaxWidth(.6f)
-                        .padding(bottom = 8.dp)
+                        .padding(bottom = Padding.mediumPadding)
                 ) {
                     Ratingbar(
                         rating = voteAverage,
                         modifier = Modifier.fillMaxWidth(.7f)
                     )
-                    Text(text = "$voteCount VOTES", fontSize = 14.sp)
+                    Text(text = "$voteCount VOTES", style = Typography.caption)
                 }
                 Text(
-                    text = "%.1f".format(voteAverage),
-                    fontSize = 50.sp,
-                    fontWeight = FontWeight.Bold,
+                    text = voteAverage.toString(),
+                    style = Typography.h3
                 )
             }
         }
         Text(
             text = title,
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
+            style = Typography.h5,
             maxLines = 2,
-            modifier = Modifier.padding(bottom = 16.dp, top = 8.dp)
+            modifier = Modifier.padding(bottom = Padding.largePadding, top = Padding.mediumPadding)
         )
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(text = runtime, modifier = Modifier.padding(end = 8.dp))
+            Text(text = runtime, modifier = Modifier.padding(end = Padding.mediumPadding))
             LazyRow {
                 items(items = genres) {
-                    Chip(text = it.name, modifier = Modifier.clickable { onGenreClick(it.id) })
+                    GenreChip(text = it.name, id = it.id, onItemClick = onGenreClick)
                 }
             }
         }

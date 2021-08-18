@@ -16,6 +16,8 @@ import com.example.movies.models.Image
 import com.example.movies.models.Result
 import com.example.movies.ui.home.components.MoviesList
 import com.example.movies.ui.theme.MoviesTheme
+import com.example.movies.ui.theme.Padding
+import com.example.movies.ui.theme.Typography
 import com.example.movies.util.DemoMovieDataProvider
 
 @Composable
@@ -35,9 +37,13 @@ fun DetailsScreenComponents(
         result?.let {
             TopComponent(result = it, onGenreClick)
 
-            Column(modifier = Modifier.padding(horizontal = 16.dp)) {
-                Text(text = "STORYLINE", fontWeight = FontWeight.Bold)
-                Text(text = it.overview)
+            Column(modifier = Modifier.padding(horizontal = Padding.largePadding)) {
+                Text(
+                    text = "STORYLINE",
+                    style = Typography.h5,
+                    modifier = Modifier.padding(bottom = Padding.mediumPadding)
+                )
+                Text(text = it.overview, style = Typography.caption)
             }
         }
         castList?.let {

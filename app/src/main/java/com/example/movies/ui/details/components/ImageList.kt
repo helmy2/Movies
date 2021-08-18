@@ -8,30 +8,32 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.movies.api.MovieApi
 import com.example.movies.models.Image
+import com.example.movies.ui.theme.Padding
+import com.example.movies.ui.theme.Typography
 
 @Composable
-fun ImageList(imageList: List<Image>, title: String, height: Dp = 150.dp) {
+fun ImageList(imageList: List<Image>, title: String) {
+    val screenHeight = LocalConfiguration.current.screenHeightDp.dp
     Column(Modifier.padding(16.dp)) {
         Text(
             text = title,
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold,
+            style = Typography.h5,
             modifier = Modifier
-                .padding(8.dp)
-                .padding(bottom = 8.dp)
+                .padding(vertical = Padding.largePadding)
         )
         LazyRow {
             items(items = imageList) {
                 ImageItem(
-                    MovieApi.IMAGE_URL + it.filePath, it.width / it.height.toFloat(),
+                    MovieApi.IMAGE_URL + it.filePath, it.aspectRatio.toFloat(),
                     Modifier
-                        .height(height)
+                        .height(screenHeight * .25f)
                 )
             }
         }

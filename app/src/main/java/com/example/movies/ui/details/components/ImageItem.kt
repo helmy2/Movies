@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
+import com.example.movies.ui.theme.Padding
 
 @Composable
 fun ImageItem(url: String, ratio: Float, modifier: Modifier) {
@@ -21,7 +22,7 @@ fun ImageItem(url: String, ratio: Float, modifier: Modifier) {
     )
     Card(
         modifier = modifier
-            .padding(end = 16.dp)
+            .padding(end = Padding.largePadding)
             .aspectRatio(ratio)
     ) {
         Image(

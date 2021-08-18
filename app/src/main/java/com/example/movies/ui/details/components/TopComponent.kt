@@ -59,7 +59,7 @@ fun TopComponent(
             runtime = result.runtime.toHourFormat(),
             voteCount = result.voteCount.toString(),
             releaseDate = result.releaseDate,
-            voteAverage = "%.1f".format(result.voteAverage).toFloat(),
+            voteAverage = result.voteAverage.toFloat(),
             onGenreClick = onGenreClick,
             modifier = Modifier.align(Alignment.BottomCenter),
         )
