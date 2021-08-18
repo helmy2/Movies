@@ -3,7 +3,7 @@ package com.example.movies.ui.discover
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import com.example.movies.ui.discover.components.GenreList
+import com.example.movies.ui.discover.components.DiscoverList
 
 @Composable
 fun DiscoverScreen(id: Int, viewModel: DiscoverViewModel, onItemClick: (id: Int) -> Unit) {
@@ -13,7 +13,7 @@ fun DiscoverScreen(id: Int, viewModel: DiscoverViewModel, onItemClick: (id: Int)
     val results by viewModel.results
 
     results?.let {
-        GenreList(
+        DiscoverList(
             results = it,
             onItemClick = onItemClick,
             onEndItem = {

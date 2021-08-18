@@ -37,7 +37,7 @@ fun CastItem(
     Card(
         modifier = modifier
             .width(screenWidth * .35f)
-            .padding(end = Padding.mediumPadding)
+            .padding(end = Padding.medium)
             .clip(Shapes.medium)
             .clickable {
                 onItemClick(id)
@@ -57,7 +57,7 @@ fun CastItem(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 style = Typography.body1,
-                modifier = Modifier.padding(Padding.mediumPadding),
+                modifier = Modifier.padding(Padding.medium),
             )
             character?.let {
                 Text(
@@ -66,9 +66,9 @@ fun CastItem(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.padding(
-                        start = Padding.mediumPadding,
-                        end = Padding.mediumPadding,
-                        bottom = Padding.mediumPadding
+                        start = Padding.medium,
+                        end = Padding.medium,
+                        bottom = Padding.medium
                     )
                 )
             }

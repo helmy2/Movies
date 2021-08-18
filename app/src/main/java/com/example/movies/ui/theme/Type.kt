@@ -34,9 +34,9 @@ val Typography = Typography(
 )
 
 object Padding {
-    val smallPadding = 4.dp
-    val mediumPadding = 8.dp
-    val largePadding = 16.dp
+    val small = 4.dp
+    val medium = 8.dp
+    val large = 16.dp
 }
 
 object Ratio {

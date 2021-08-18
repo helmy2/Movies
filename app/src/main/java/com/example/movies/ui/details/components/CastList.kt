@@ -14,12 +14,12 @@ import com.example.movies.ui.theme.Typography
 
 @Composable
 fun CastList(castList: List<Cast>, onCastClick: (id: Int) -> Unit) {
-    Column(Modifier.padding(Padding.largePadding)) {
+    Column(Modifier.padding(Padding.large)) {
         Text(
             text = "Cast",
             style = Typography.h5,
             modifier = Modifier
-                .padding(vertical = Padding.mediumPadding)
+                .padding(vertical = Padding.medium)
         )
         LazyRow {
             items(items = castList.filter { it.profilePath != "" }) { cast ->

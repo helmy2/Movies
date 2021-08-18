@@ -8,7 +8,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.movies.models.Cast
@@ -37,11 +36,11 @@ fun DetailsScreenComponents(
         result?.let {
             TopComponent(result = it, onGenreClick)
 
-            Column(modifier = Modifier.padding(horizontal = Padding.largePadding)) {
+            Column(modifier = Modifier.padding(horizontal = Padding.large)) {
                 Text(
                     text = "STORYLINE",
                     style = Typography.h5,
-                    modifier = Modifier.padding(bottom = Padding.mediumPadding)
+                    modifier = Modifier.padding(bottom = Padding.medium)
                 )
                 Text(text = it.overview, style = Typography.caption)
             }
@@ -54,7 +53,6 @@ fun DetailsScreenComponents(
                 results = it,
                 title = "Collection",
                 onItemClick = onMovieClick,
-                modifier = Modifier.height(360.dp)
             )
         }
         imageList?.let {
@@ -66,7 +64,6 @@ fun DetailsScreenComponents(
                     results = it,
                     title = "Recommendations",
                     onItemClick = onMovieClick,
-                    modifier = Modifier.height(360.dp)
                 )
         }
     }

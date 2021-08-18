@@ -3,6 +3,7 @@ package com.example.movies.repository
 
 import android.util.Log
 import com.example.movies.api.MovieApi
+import com.example.movies.models.Genre
 import com.example.movies.models.Result
 import javax.inject.Inject
 
@@ -74,6 +75,19 @@ class HomeRepository @Inject constructor(
         }
     } catch (e: Exception) {
         Log.i(TAG, "getAnimationMovies: ${e.message}")
+        null
+    }
+
+    suspend fun getGenreListMovies(): List<Genre>? = try {
+        val response = api.getGenreListMovies()
+        if (response.isSuccessful)
+            response.body()?.genres
+        else {
+            Log.i(TAG, "getGenreListMovies: ${response.errorBody()}")
+            null
+        }
+    } catch (e: Exception) {
+        Log.i(TAG, "getGenreListMovies: ${e.message}")
         null
     }
 }

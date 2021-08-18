@@ -7,9 +7,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.movies.models.Genre
 import com.example.movies.ui.theme.Padding
 import com.example.movies.ui.theme.Typography
@@ -31,7 +28,7 @@ fun InformationBox(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(all = Padding.largePadding)
+            .padding(all = Padding.large)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -40,14 +37,14 @@ fun InformationBox(
         ) {
             Chip(
                 text = releaseDate.toYearFormat(),
-                modifier = Modifier.padding(bottom = Padding.mediumPadding)
+                modifier = Modifier.padding(bottom = Padding.medium)
             )
 
             Row(modifier = Modifier.fillMaxWidth(.6f), verticalAlignment = Alignment.Bottom) {
                 Column(
                     Modifier
                         .fillMaxWidth(.6f)
-                        .padding(bottom = Padding.mediumPadding)
+                        .padding(bottom = Padding.medium)
                 ) {
                     Ratingbar(
                         rating = voteAverage,
@@ -65,10 +62,10 @@ fun InformationBox(
             text = title,
             style = Typography.h5,
             maxLines = 2,
-            modifier = Modifier.padding(bottom = Padding.largePadding, top = Padding.mediumPadding)
+            modifier = Modifier.padding(bottom = Padding.large, top = Padding.medium)
         )
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(text = runtime, modifier = Modifier.padding(end = Padding.mediumPadding))
+            Text(text = runtime, modifier = Modifier.padding(end = Padding.medium))
             LazyRow {
                 items(items = genres) {
                     GenreChip(text = it.name, id = it.id, onItemClick = onGenreClick)

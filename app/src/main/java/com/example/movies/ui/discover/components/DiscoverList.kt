@@ -13,16 +13,17 @@ import androidx.compose.ui.unit.dp
 import com.example.movies.api.MovieApi
 import com.example.movies.models.Result
 import com.example.movies.ui.home.components.MovieItem
+import com.example.movies.ui.theme.Padding
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun GenreList(
+fun DiscoverList(
     results: List<Result>,
     onItemClick: (id: Int) -> Unit,
     onEndItem: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column(modifier.padding(8.dp)) {
+    Column(modifier.padding(Padding.medium)) {
         LazyVerticalGrid(
             cells = GridCells.Adaptive(minSize = 128.dp),
         ) {
@@ -31,9 +32,10 @@ fun GenreList(
                     url = MovieApi.IMAGE_URL + result.posterPath,
                     title = result.title,
                     rating = result.voteAverage.toFloat(),
+                    id = result.id,
+                    onItemClick = onItemClick,
                     modifier = Modifier
-                        .padding(8.dp)
-                        .clickable { onItemClick(result.id) }
+                        .padding(Padding.medium)
                 )
                 if (index == results.size - 1)
                     onEndItem()

@@ -1,6 +1,6 @@
 package com.example.movies.ui.util
 
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
@@ -18,7 +18,6 @@ import com.example.movies.ui.person.PersonViewModel
 import com.example.movies.ui.search.SearchScreen
 import com.example.movies.ui.search.SearchViewModel
 import com.example.movies.ui.splash.SplashScreen
-import com.google.accompanist.pager.ExperimentalPagerApi
 
 @Composable
 fun Navigation() {
@@ -57,7 +56,9 @@ private fun HomeScreenComposable(navController: NavHostController) {
             navController.navigate(Screen.DetailsScreen.route + "/$id")
         }, onSearchClick = {
             navController.navigate(Screen.SearchScreen.route)
-        }, homeViewModel
+        }, onGenreClick = { id ->
+            navController.navigate(Screen.DiscoverScreen.route + "/$id")
+        }, viewModel = homeViewModel
     )
 }
 

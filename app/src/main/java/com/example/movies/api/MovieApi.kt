@@ -36,6 +36,11 @@ interface MovieApi {
     @GET("discover/movie$API_KEY&page=1&with_genres=16")
     suspend fun getAnimationMovies(): Response<ResultResponse>
 
+    @GET("genre/movie/list$API_KEY")
+    suspend fun getGenreListMovies(): Response<GenresListResponse>
+
+
+//    https://api.themoviedb.org/3/genre/movie/list?api_key=baf62556ad57430e7e61c1ace8490114
 
     ////////////////////////////////////////////////////////////////
 

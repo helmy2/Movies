@@ -1,7 +1,6 @@
 package com.example.movies.ui.search.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
@@ -36,7 +35,7 @@ fun SearchPersonList(
                     name = result.name,
                     character = null,
                     id = result.id,
-                    onItemClick = onItemClick,modifier = Modifier.padding(Padding.smallPadding))
+                    onItemClick = onItemClick,modifier = Modifier.padding(Padding.small))
 
                 if (index == castList.size - 1)
                     onEndItem()

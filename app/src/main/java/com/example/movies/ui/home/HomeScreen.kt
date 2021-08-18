@@ -1,26 +1,17 @@
 package com.example.movies.ui.home
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.movies.ui.home.components.HomeAppBar
-import com.example.movies.ui.home.components.MoviesList
-import com.example.movies.ui.home.components.PagerList
+import com.example.movies.ui.home.components.HomeScreenComponent
 import com.google.accompanist.pager.ExperimentalPagerApi
 
 
-@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun HomeScreen(
     onMovieClick: (id: Int) -> Unit,
+    onGenreClick: (id: Int) -> Unit,
     onSearchClick: () -> Unit,
     viewModel: HomeViewModel = viewModel()
 ) {
@@ -29,54 +20,19 @@ fun HomeScreen(
     val nowPlayingResults by remember { viewModel.nowPlayingResults }
     val upcomingResults by remember { viewModel.upcomingResults }
     val animationResults by remember { viewModel.animationResults }
+    val genreListResults by remember { viewModel.genreListResults }
 
-    Scaffold(
-        topBar = { HomeAppBar(onActionsClick = onSearchClick) }
-    ) {
-        Column(
-            modifier = Modifier.verticalScroll(state = rememberScrollState(), enabled = true)
-        ) {
-            nowPlayingResults?.let {
-                PagerList(
-                    it,
-                    onMovieClick,
-                    modifier = Modifier.height(300.dp)
-                )
-            }
-            animationResults?.let {
-                MoviesList(
-                    it,
-                    "Animation",
-                    onMovieClick,
-                    modifier = Modifier.height(360.dp)
-                )
-            }
-            upcomingResults?.let {
-                MoviesList(
-                    it,
-                    "Upcoming",
-                    onMovieClick,
-                    modifier = Modifier.height(360.dp)
-                )
-            }
-            topRatedResults?.let {
-                MoviesList(
-                    it,
-                    "Top Rated",
-                    onMovieClick,
-                    modifier = Modifier.height(360.dp)
-                )
-            }
-            popularResults?.let {
-                MoviesList(
-                    it,
-                    "Popular",
-                    onMovieClick,
-                    modifier = Modifier.height(360.dp)
-                )
-            }
-        }
-    }
+    HomeScreenComponent(
+        onSearchClick,
+        genreListResults,
+        onGenreClick,
+        nowPlayingResults,
+        onMovieClick,
+        animationResults,
+        upcomingResults,
+        topRatedResults,
+        popularResults
+    )
 }
 
 

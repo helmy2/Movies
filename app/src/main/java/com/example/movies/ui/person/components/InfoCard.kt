@@ -7,21 +7,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.movies.ui.theme.Padding
+import com.example.movies.ui.theme.Typography
 
 @Composable
 fun InfoCard(title: String, body: String?) {
     body?.let {
         Text(
             text = title,
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
+            style = Typography.h5,
             modifier = Modifier
-                .padding(start = 16.dp, top = 16.dp)
+                .padding(start = Padding.medium, Padding.large)
         )
         Text(
             text = it,
             modifier = Modifier
-                .padding(start = 16.dp, top = 8.dp)
+                .padding(start =Padding.large, top = Padding.medium)
         )
     }
 }

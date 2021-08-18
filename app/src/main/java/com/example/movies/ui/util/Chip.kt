@@ -9,7 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import com.example.movies.ui.theme.Padding
 import com.example.movies.ui.theme.Shapes
 
@@ -21,7 +20,7 @@ fun Chip(
 ) {
     Card(
         modifier = modifier
-            .padding(end = Padding.mediumPadding)
+            .padding(end = Padding.medium)
             .clip(shape = Shapes.small),
         backgroundColor = backgroundColor
     ) {
@@ -29,8 +28,8 @@ fun Chip(
             text = text,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(
-                vertical = Padding.smallPadding,
-                horizontal = Padding.largePadding
+                vertical = Padding.small,
+                horizontal = Padding.large
             )
         )
     }

@@ -28,8 +28,8 @@ fun SearchScreen(
         viewModel.search()
     }
 
-    val movieResults by viewModel.movieResults
-    val personResults by viewModel.personResults
+    val movieResults by viewModel.movieResults.collectAsState()
+    val personResults by viewModel.personResults.collectAsState()
 
     Column(
         modifier = Modifier
@@ -57,7 +57,7 @@ fun SearchScreen(
                 "" -> {
                     EmptySearchScreenComponents()
                 }
-                else -> {
+                else ->
                     SearchScreenComponents(
                         movieResults,
                         onMovieClick,
@@ -70,9 +70,9 @@ fun SearchScreen(
                         },
                         titles[indexState],
                     )
-                }
             }
         }
     }
 }
+
 

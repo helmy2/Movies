@@ -35,9 +35,10 @@ fun SearchMovieList(
                     url = MovieApi.IMAGE_URL + result.posterPath,
                     title = result.title,
                     rating = result.voteAverage.toFloat(),
+                    id = result.id,
+                    onItemClick = onItemClick,
                     modifier = Modifier
                         .padding(8.dp)
-                        .clickable { onItemClick(result.id) }
                 )
                 if (index == results.size - 1)
                     onEndItem()

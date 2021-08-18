@@ -9,10 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.movies.api.MovieApi
 import com.example.movies.models.Image
 import com.example.movies.ui.theme.Padding
@@ -26,7 +23,7 @@ fun ImageList(imageList: List<Image>, title: String) {
             text = title,
             style = Typography.h5,
             modifier = Modifier
-                .padding(vertical = Padding.largePadding)
+                .padding(vertical = Padding.large)
         )
         LazyRow {
             items(items = imageList) {

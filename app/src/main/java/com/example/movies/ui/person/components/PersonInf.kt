@@ -11,14 +11,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.example.movies.api.MovieApi
 import com.example.movies.models.Person
 import com.example.movies.ui.theme.MoviesTheme
+import com.example.movies.ui.theme.Typography
 import com.example.movies.util.DemoMovieDataProvider
 
 @Composable
@@ -40,7 +39,7 @@ fun PersonInf(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .aspectRatio(.8f),
+                .aspectRatio(.7f),
             contentAlignment = Alignment.TopCenter
         ) {
             Image(
@@ -64,8 +63,7 @@ fun PersonInf(
             ) {
                 Text(
                     text = person.name,
-                    fontSize = 30.sp,
-                    fontWeight = FontWeight.Bold,
+                    style = Typography.h5,
                     modifier = Modifier
                         .padding(16.dp)
                 )
