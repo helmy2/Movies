@@ -17,7 +17,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import coil.compose.ImagePainter
 import com.example.movies.ui.theme.Padding
 import com.example.movies.ui.theme.Shapes
-import com.google.accompanist.placeholder.material.placeholder
 
 @Composable
 fun MovieItemComponent(
@@ -26,7 +25,6 @@ fun MovieItemComponent(
     id: Int,
     painter: ImagePainter,
     title: String,
-    placeholder: Boolean,
     rating: Float
 ) {
     Card(
@@ -42,8 +40,8 @@ fun MovieItemComponent(
                 painter = painter,
                 contentDescription = title,
                 modifier = Modifier
-                    .aspectRatio(.7f)
-                    .placeholder(placeholder),
+                    .fillMaxWidth()
+                    .aspectRatio(.7f),
                 contentScale = ContentScale.Crop
             )
             Text(
@@ -53,9 +51,8 @@ fun MovieItemComponent(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = Padding.medium, end = Padding.medium, top = Padding.medium)
-                    .placeholder(placeholder)
             )
-            RatingbarComponent(rating, placeholder)
+            RatingbarComponent(rating)
         }
     }
 }

@@ -15,7 +15,6 @@ fun MovieItem(
     onItemClick: (id: Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    var placeholder = true
 
     val painter = rememberImagePainter(
         url,
@@ -23,9 +22,7 @@ fun MovieItem(
             crossfade(true)
         },
     )
-    if (painter.state is ImagePainter.State.Success)
-        placeholder = false
 
-    MovieItemComponent(modifier, onItemClick, id, painter, title, placeholder, rating)
+    MovieItemComponent(modifier, onItemClick, id, painter, title, rating)
 }
 

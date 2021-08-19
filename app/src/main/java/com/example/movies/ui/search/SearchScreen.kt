@@ -3,6 +3,7 @@ package com.example.movies.ui.search
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material.Text
@@ -42,7 +43,11 @@ fun SearchScreen(
             }
         )
 
-        TabRow(selectedTabIndex = indexState) {
+        TabRow(
+            selectedTabIndex = indexState,
+            backgroundColor = MaterialTheme.colors.surface,
+            contentColor = MaterialTheme.colors.onSurface
+        ) {
             titles.forEachIndexed { index, title ->
                 Tab(
                     text = { Text(title.name) },

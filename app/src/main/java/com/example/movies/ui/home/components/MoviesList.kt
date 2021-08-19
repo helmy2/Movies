@@ -23,7 +23,7 @@ fun MoviesList(
 ) {
     val screenHeight  = LocalConfiguration.current.screenHeightDp.dp
 
-    Column(Modifier.padding(Padding.medium).height(screenHeight * .35f)) {
+    Column(Modifier.padding(Padding.medium).height(screenHeight * .45f)) {
         Text(
             text = title,
             style = Typography.h5,
@@ -33,7 +33,7 @@ fun MoviesList(
         )
         LazyRow {
             items(items = results) { result ->
-                if (result.posterPath != "")
+                if (result.posterPath != null)
                     MovieItem(
                         url = MovieApi.IMAGE_URL + result.posterPath,
                         title = result.title,

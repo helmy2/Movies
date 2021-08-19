@@ -19,7 +19,7 @@ fun SearchScreenComponents(
             searchResults?.let {
                 if (it.isNotEmpty())
                     SearchMovieList(
-                        results = it,
+                        results = it.filter { it.posterPath != null },
                         onItemClick = onMovieClick,
                         onEndItem = onEndItem,
                     )

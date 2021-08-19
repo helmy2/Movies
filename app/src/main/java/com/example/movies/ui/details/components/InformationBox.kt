@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.movies.models.Genre
+import com.example.movies.ui.home.components.RatingAutoSizeText
 import com.example.movies.ui.theme.Padding
 import com.example.movies.ui.theme.Typography
 import com.example.movies.ui.util.Chip
@@ -52,9 +53,8 @@ fun InformationBox(
                     )
                     Text(text = "$voteCount VOTES", style = Typography.caption)
                 }
-                Text(
+                RatingAutoSizeText(
                     text = voteAverage.toString(),
-                    style = Typography.h3
                 )
             }
         }

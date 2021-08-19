@@ -10,7 +10,6 @@ import com.example.movies.models.Genre
 import com.example.movies.models.Result
 import com.google.accompanist.pager.ExperimentalPagerApi
 
-@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun HomeScreenComponent(
     onSearchClick: () -> Unit,
@@ -34,35 +33,35 @@ fun HomeScreenComponent(
             }
 
             nowPlayingResults?.let {
-                PagerList(
+                MoviesList(
                     it,
                     "Now Playing",
                     onMovieClick,
                 )
             }
             animationResults?.let {
-                PagerList(
+                MoviesList(
                     it,
                     "Animation",
                     onMovieClick,
                 )
             }
             upcomingResults?.let {
-                PagerList(
+                MoviesList(
                     it,
                     "Upcoming",
                     onMovieClick,
                 )
             }
             topRatedResults?.let {
-                PagerList(
+                MoviesList(
                     it,
                     "Top Rated",
                     onMovieClick,
                 )
             }
             popularResults?.let {
-                PagerList(
+                MoviesList(
                     it,
                     "Popular",
                     onMovieClick,

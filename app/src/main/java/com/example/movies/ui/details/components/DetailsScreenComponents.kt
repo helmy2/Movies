@@ -46,17 +46,20 @@ fun DetailsScreenComponents(
             }
         }
         castList?.let {
-            CastList(it, onCastClick)
+            if (it.isNotEmpty())
+                CastList(it, onCastClick)
         }
         collectionList?.let {
-            MoviesList(
-                results = it,
-                title = "Collection",
-                onItemClick = onMovieClick,
-            )
+            if (it.isNotEmpty())
+                MoviesList(
+                    results = it,
+                    title = "Collection",
+                    onItemClick = onMovieClick,
+                )
         }
         imageList?.let {
-            ImageList(it, "Image")
+            if (it.isNotEmpty())
+                ImageList(it, "Image")
         }
         recommendationsList?.let {
             if (it.isNotEmpty())
