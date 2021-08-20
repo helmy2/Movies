@@ -17,26 +17,27 @@ interface MovieApi {
         const val BASE_URL = "https://api.themoviedb.org/3/"
         const val IMAGE_URL = "https://image.tmdb.org/t/p/w500/"
         const val IMAGE_URL_ORIGINAL = "https://image.tmdb.org/t/p/original/"
+        const val Language="&language=en"
     }
 
     ///////////////////////////////////////////////////////////
 
-    @GET("movie/popular$API_KEY")
+    @GET("movie/popular$API_KEY$Language")
     suspend fun getPopularMovies(): Response<ResultResponse>
 
-    @GET("movie/now_playing$API_KEY")
+    @GET("movie/now_playing$API_KEY$Language")
     suspend fun getNowPlayingMovies(): Response<ResultResponse>
 
-    @GET("movie/top_rated$API_KEY")
+    @GET("movie/top_rated$API_KEY$Language")
     suspend fun getTopRatedMovies(): Response<ResultResponse>
 
-    @GET("movie/upcoming$API_KEY")
+    @GET("movie/upcoming$API_KEY$Language")
     suspend fun getUpcomingMovies(): Response<ResultResponse>
 
-    @GET("discover/movie$API_KEY&page=1&with_genres=16")
+    @GET("discover/movie$API_KEY$Language&page=1&with_genres=16")
     suspend fun getAnimationMovies(): Response<ResultResponse>
 
-    @GET("genre/movie/list$API_KEY")
+    @GET("genre/movie/list$API_KEY$Language")
     suspend fun getGenreListMovies(): Response<GenresListResponse>
 
 
@@ -44,16 +45,16 @@ interface MovieApi {
 
     ////////////////////////////////////////////////////////////////
 
-    @GET("movie/{id}$API_KEY")
+    @GET("movie/{id}$API_KEY$Language")
     suspend fun getMovieDetails(@Path("id") id: Int): Response<Result>
 
-    @GET("movie/{id}/credits$API_KEY")
+    @GET("movie/{id}/credits$API_KEY$Language")
     suspend fun getMovieCast(@Path("id") id: Int): Response<CastResponse>
 
-    @GET("movie/{id}/recommendations$API_KEY")
+    @GET("movie/{id}/recommendations$API_KEY$Language")
     suspend fun getMovieRecommendations(@Path("id") id: Int): Response<ResultResponse>
 
-    @GET("collection/{id}$API_KEY")
+    @GET("collection/{id}$API_KEY$Language")
     suspend fun getMovieCollection(@Path("id") id: Int): Response<Collection>
 
     @GET("movie/{id}/images$API_KEY")
@@ -61,10 +62,10 @@ interface MovieApi {
 
     ///////////////////////////////////////////////////////////
 
-    @GET("person/{id}$API_KEY")
+    @GET("person/{id}$API_KEY$Language")
     suspend fun getPersonDetails(@Path("id") id: Int): Response<Person>
 
-    @GET("person/{id}/movie_credits$API_KEY")
+    @GET("person/{id}/movie_credits$API_KEY$Language")
     suspend fun getMovieCredits(@Path("id") id: Int): Response<CreditResponse>
 
     @GET("person/{id}/images$API_KEY")
@@ -72,14 +73,14 @@ interface MovieApi {
 
     /////////////////////////////////////////////
 
-    @GET("search/movie$API_KEY")
+    @GET("search/movie$API_KEY$Language")
     suspend fun searchMovie(
         @Query("query") query: String,
         @Query("page") pageNumber: Int
     ): Response<ResultResponse>
 
 
-    @GET("search/person$API_KEY")
+    @GET("search/person$API_KEY$Language")
     suspend fun searchPerson(
         @Query("query") query: String,
         @Query("page") pageNumber: Int
@@ -87,12 +88,11 @@ interface MovieApi {
 
     ////////////////////////////////////////////
 
-    @GET("discover/movie$API_KEY")
+    @GET("discover/movie$API_KEY$Language")
     suspend fun getMovieGenres(
         @Query("with_genres") genresId: Int,
         @Query("page") pageNumber: Int
     ): Response<GenresResponse>
 
-//    ?api_key=baf62556ad57430e7e61c1ace8490114&sort_by=popularity.desc&with_genres=28
 
 }

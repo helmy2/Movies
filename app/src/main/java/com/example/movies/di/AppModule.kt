@@ -1,6 +1,8 @@
 package com.example.movies.di
 
 import com.example.movies.api.MovieApi
+import com.example.movies.repository.*
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,4 +29,39 @@ object AppModule {
     fun provideMovieApi(retrofit: Retrofit): MovieApi =
         retrofit.create(MovieApi::class.java)
 
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class RepositoryModule {
+
+    @Binds
+    @Singleton
+    abstract fun provideDetailsRepository(
+        detailsRepositoryImpl: DetailsRepositoryImpl
+    ): DetailsRepository
+
+    @Binds
+    @Singleton
+    abstract fun provideDiscoverRepository(
+        discoverRepositoryImpl: DiscoverRepositoryImpl
+    ): DiscoverRepository
+
+    @Binds
+    @Singleton
+    abstract fun provideHomeRepository(
+        homeRepositoryImpl: HomeRepositoryImpl
+    ): HomeRepository
+
+    @Binds
+    @Singleton
+    abstract fun providePersonRepository(
+        personRepositoryImpl: PersonRepositoryImpl
+    ): PersonRepository
+
+    @Binds
+    @Singleton
+    abstract fun provideSearchRepository(
+        searchRepositoryImpl: SearchRepositoryImpl
+    ): SearchRepository
 }

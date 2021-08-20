@@ -29,8 +29,8 @@ fun SearchScreen(
         viewModel.search()
     }
 
-    val movieResults by viewModel.movieResults.collectAsState()
-    val personResults by viewModel.personResults.collectAsState()
+    val movieResults by viewModel.movieResults
+    val personResults by viewModel.personResults
 
     Column(
         modifier = Modifier
