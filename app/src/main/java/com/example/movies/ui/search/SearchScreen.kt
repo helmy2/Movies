@@ -43,20 +43,6 @@ fun SearchScreen(
             }
         )
 
-        TabRow(
-            selectedTabIndex = indexState,
-            backgroundColor = MaterialTheme.colors.surface,
-            contentColor = MaterialTheme.colors.onSurface
-        ) {
-            titles.forEachIndexed { index, title ->
-                Tab(
-                    text = { Text(title.name) },
-                    selected = indexState == index,
-                    onClick = { indexState = index }
-                )
-            }
-        }
-
         Crossfade(targetState = searchText) {
             when (it) {
                 "" -> {
@@ -64,16 +50,19 @@ fun SearchScreen(
                 }
                 else ->
                     SearchScreenComponents(
-                        movieResults,
-                        onMovieClick,
-                        personResults,
-                        onCastClick,
+                        searchResults = movieResults,
+                        titles = titles,
+                        index = indexState,
+                        onTapItemClick = { indexState = it },
+                        onMovieClick = onMovieClick,
+                        personResults = personResults,
+                        onCastClick = onCastClick,
                         onEndItem = if (titles[indexState] == Type.Movie) {
                             { viewModel.addSearchMovie() }
                         } else {
                             { viewModel.addSearchPerson() }
                         },
-                        titles[indexState],
+                        type = titles[indexState],
                     )
             }
         }

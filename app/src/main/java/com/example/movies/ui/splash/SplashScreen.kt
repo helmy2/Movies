@@ -22,7 +22,7 @@ import kotlinx.coroutines.withContext
 
 @Composable
 fun SplashScreen(
-    navController: NavController,
+    onSplashDone: () -> Unit,
     dispatcher: CoroutineDispatcher = Dispatchers.Main,
 ) {
     val scale = remember {
@@ -43,8 +43,7 @@ fun SplashScreen(
                 )
             )
             delay(Constants.SPLASH_SCREEN_DURATION)
-            navController.popBackStack()
-            navController.navigate(Screen.HomeScreen.route)
+            onSplashDone()
         }
     }
     Icon(

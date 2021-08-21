@@ -1,6 +1,8 @@
 package com.example.movies.ui.util
 
-import androidx.compose.runtime.*
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
@@ -20,29 +22,48 @@ import com.example.movies.ui.search.SearchViewModel
 import com.example.movies.ui.splash.SplashScreen
 
 @Composable
-fun Navigation() {
+fun Navigation(connectionState: State<Boolean>) {
     val navController = rememberNavController()
+
     NavHost(
         navController = navController,
         startDestination = Screen.SplashScreen.route,
     ) {
         composable(Screen.SplashScreen.route) {
-            SplashScreen(navController = navController)
+            SplashScreen(onSplashDone = {
+                navController.popBackStack()
+                navController.navigate(Screen.HomeScreen.route)
+            })
         }
         composable(Screen.HomeScreen.route) {
-            HomeScreenComposable(navController)
+            if (connectionState.value)
+                HomeScreenComposable(navController)
+            else
+                NoConnectionScreen()
         }
         composable(Screen.DetailsScreen.route + "/{id}") {
-            DetailsScreenComposable(navController, it)
+            if (connectionState.value)
+                DetailsScreenComposable(navController, it)
+            else
+                NoConnectionScreen()
         }
         composable(Screen.PersonScreen.route + "/{id}") {
-            PersonScreenComposable(navController, it)
+            if (connectionState.value)
+                PersonScreenComposable(navController, it)
+            else
+                NoConnectionScreen()
         }
         composable(Screen.SearchScreen.route) {
-            SearchScreenComposable(navController)
+            if (connectionState.value)
+                SearchScreenComposable(navController)
+            else
+                NoConnectionScreen()
         }
         composable(Screen.DiscoverScreen.route + "/{id}") {
-            DiscoverScreenComposable(navController, it)
+            if (connectionState.value)
+                DiscoverScreenComposable(navController, it)
+            else
+                NoConnectionScreen()
         }
     }
 }
