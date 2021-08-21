@@ -5,7 +5,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.movies.ui.home.components.HomeScreenComponent
-import com.google.accompanist.pager.ExperimentalPagerApi
 
 
 @Composable

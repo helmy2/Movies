@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.movies.models.Genre
 import com.example.movies.models.Result
-import com.google.accompanist.pager.ExperimentalPagerApi
 
 @Composable
 fun HomeScreenComponent(
