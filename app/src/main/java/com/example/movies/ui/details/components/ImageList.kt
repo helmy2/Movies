@@ -10,10 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
-import com.example.movies.api.MovieApi
 import com.example.movies.models.Image
 import com.example.movies.ui.theme.Padding
 import com.example.movies.ui.theme.Typography
+import com.example.movies.util.Constants.IMAGE_URL
 
 @Composable
 fun ImageList(imageList: List<Image>, title: String) {
@@ -28,7 +28,7 @@ fun ImageList(imageList: List<Image>, title: String) {
         LazyRow {
             items(items = imageList) {
                 ImageItem(
-                    MovieApi.IMAGE_URL + it.filePath, it.aspectRatio.toFloat(),
+                    IMAGE_URL + it.filePath, it.aspectRatio.toFloat(),
                     Modifier
                         .height(screenHeight * .25f)
                 )

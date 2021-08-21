@@ -14,10 +14,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
-import com.example.movies.api.MovieApi
 import com.example.movies.models.Person
 import com.example.movies.ui.theme.MoviesTheme
 import com.example.movies.ui.theme.Typography
+import com.example.movies.util.Constants.IMAGE_URL_ORIGINAL
 import com.example.movies.util.DemoMovieDataProvider
 
 @Composable
@@ -26,7 +26,7 @@ fun PersonInf(
     modifier: Modifier = Modifier
 ) {
     val painter = rememberImagePainter(
-        MovieApi.IMAGE_URL_ORIGINAL + person.profilePath,
+        IMAGE_URL_ORIGINAL + person.profilePath,
         builder = {
             crossfade(true)
         },

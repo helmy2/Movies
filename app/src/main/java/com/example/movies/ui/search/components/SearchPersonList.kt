@@ -8,10 +8,10 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.movies.api.MovieApi
 import com.example.movies.models.Cast
 import com.example.movies.ui.details.components.CastItem
 import com.example.movies.ui.theme.Padding
+import com.example.movies.util.Constants.IMAGE_URL
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -31,7 +31,7 @@ fun SearchPersonList(
         ) {
             itemsIndexed(items = castList) { index, result ->
                 CastItem(
-                    url = MovieApi.IMAGE_URL + result.profilePath,
+                    url = IMAGE_URL + result.profilePath,
                     name = result.name,
                     character = null,
                     id = result.id,

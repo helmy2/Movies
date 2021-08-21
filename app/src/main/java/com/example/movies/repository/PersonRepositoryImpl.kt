@@ -2,7 +2,7 @@ package com.example.movies.repository
 
 
 import android.util.Log
-import com.example.movies.api.MovieApi
+import com.example.movies.api.PersonApi
 import com.example.movies.models.Image
 import com.example.movies.models.Person
 import com.example.movies.models.Result
@@ -11,7 +11,7 @@ import javax.inject.Inject
 private const val TAG = "PersonRepository"
 
 class PersonRepositoryImpl @Inject constructor(
-    private val api: MovieApi,
+    private val api: PersonApi,
 ) : PersonRepository{
 
     override suspend fun getPersonDetails(id: Int): Person? = try {

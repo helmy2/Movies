@@ -2,7 +2,7 @@ package com.example.movies.repository
 
 
 import android.util.Log
-import com.example.movies.api.MovieApi
+import com.example.movies.api.SearchApi
 import com.example.movies.models.Cast
 import com.example.movies.models.Result
 import javax.inject.Inject
@@ -10,7 +10,7 @@ import javax.inject.Inject
 private const val TAG = "SearchRepository"
 
 class SearchRepositoryImpl @Inject constructor(
-    private val api: MovieApi,
+    private val api: SearchApi,
 ) : SearchRepository {
 
     override suspend fun searchMovie(query: String, pageNumber: Int): List<Result>? = try {

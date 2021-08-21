@@ -10,10 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
-import com.example.movies.api.MovieApi
 import com.example.movies.models.Result
 import com.example.movies.ui.theme.Padding
 import com.example.movies.ui.theme.Typography
+import com.example.movies.util.Constants.IMAGE_URL
 
 @Composable
 fun MoviesList(
@@ -35,7 +35,7 @@ fun MoviesList(
             items(items = results) { result ->
                 if (result.posterPath != null)
                     MovieItem(
-                        url = MovieApi.IMAGE_URL + result.posterPath,
+                        url = IMAGE_URL + result.posterPath,
                         title = result.title,
                         rating = result.voteAverage.toFloat(),
                         id = result.id,

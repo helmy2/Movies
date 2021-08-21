@@ -7,10 +7,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.movies.api.MovieApi
 import com.example.movies.models.Cast
 import com.example.movies.ui.theme.Padding
 import com.example.movies.ui.theme.Typography
+import com.example.movies.util.Constants.IMAGE_URL
 
 @Composable
 fun CastList(castList: List<Cast>, onCastClick: (id: Int) -> Unit) {
@@ -24,7 +24,7 @@ fun CastList(castList: List<Cast>, onCastClick: (id: Int) -> Unit) {
         LazyRow {
             items(items = castList.filter { it.profilePath != "" }) { cast ->
                 CastItem(
-                    url = MovieApi.IMAGE_URL + cast.profilePath,
+                    url = IMAGE_URL + cast.profilePath,
                     name = cast.name,
                     character = cast.character,
                     id = cast.id,

@@ -9,10 +9,10 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.movies.api.MovieApi
 import com.example.movies.models.Result
 import com.example.movies.ui.home.components.MovieItem
 import com.example.movies.ui.theme.Padding
+import com.example.movies.util.Constants.IMAGE_URL
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -28,7 +28,7 @@ fun DiscoverList(
         ) {
             itemsIndexed(items = results) { index, result ->
                 MovieItem(
-                    url = MovieApi.IMAGE_URL + result.posterPath,
+                    url = IMAGE_URL + result.posterPath,
                     title = result.title,
                     rating = result.voteAverage.toFloat(),
                     id = result.id,

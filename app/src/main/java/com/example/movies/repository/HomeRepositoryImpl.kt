@@ -2,7 +2,7 @@ package com.example.movies.repository
 
 
 import android.util.Log
-import com.example.movies.api.MovieApi
+import com.example.movies.api.HomeApi
 import com.example.movies.models.Genre
 import com.example.movies.models.Result
 import javax.inject.Inject
@@ -10,7 +10,7 @@ import javax.inject.Inject
 private const val TAG = "HomeRepository"
 
 class HomeRepositoryImpl @Inject constructor(
-    private val api: MovieApi,
+    private val api: HomeApi,
 ) : HomeRepository{
 
     override suspend fun getPopularMovies(): List<Result>? = try {

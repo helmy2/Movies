@@ -11,8 +11,8 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import coil.compose.rememberImagePainter
-import com.example.movies.api.MovieApi
 import com.example.movies.models.Result
+import com.example.movies.util.Constants.IMAGE_URL_ORIGINAL
 import com.example.movies.util.toHourFormat
 
 @Composable
@@ -22,7 +22,7 @@ fun TopComponent(
     modifier: Modifier = Modifier
 ) {
     val painter = rememberImagePainter(
-        MovieApi.IMAGE_URL_ORIGINAL + result.backdropPath,
+        IMAGE_URL_ORIGINAL + result.backdropPath,
         builder = {
             crossfade(true)
         },
