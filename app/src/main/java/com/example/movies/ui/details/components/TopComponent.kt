@@ -11,9 +11,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import coil.compose.rememberImagePainter
-import com.example.movies.models.Result
-import com.example.movies.util.Constants.IMAGE_URL_ORIGINAL
-import com.example.movies.util.toHourFormat
+import com.example.movies.data.models.Result
+import com.example.movies.data.util.Constants.IMAGE_URL_ORIGINAL
+import com.example.movies.data.util.toHourFormat
 
 @Composable
 fun TopComponent(

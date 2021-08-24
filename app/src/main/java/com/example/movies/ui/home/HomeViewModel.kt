@@ -5,9 +5,10 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movies.models.Genre
-import com.example.movies.models.Result
-import com.example.movies.repository.HomeRepository
+import com.example.movies.data.database.Authentication
+import com.example.movies.data.models.Genre
+import com.example.movies.data.models.Result
+import com.example.movies.data.repository.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -36,6 +37,7 @@ class HomeViewModel @Inject constructor(
     var genreListResults: MutableState<List<Genre>?> = mutableStateOf(null)
         private set
 
+    var authentication: MutableState<Authentication?> = mutableStateOf(null)
 
     private fun getPopularMovies() = viewModelScope.launch {
         popularResults.value = repository.getPopularMovies()
@@ -59,6 +61,10 @@ class HomeViewModel @Inject constructor(
     private fun getGenreListMovies() = viewModelScope.launch {
         genreListResults.value = repository.getGenreListMovies()
         Log.i("TAG", "getGenreListMovies: ${genreListResults.value}")
+    }
+
+    fun getAuthentication(authentication: Authentication) {
+            this.authentication.value = authentication
     }
 
 

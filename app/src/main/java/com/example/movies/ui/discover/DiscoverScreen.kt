@@ -6,7 +6,11 @@ import androidx.compose.runtime.getValue
 import com.example.movies.ui.discover.components.DiscoverList
 
 @Composable
-fun DiscoverScreen(id: Int, viewModel: DiscoverViewModel, onItemClick: (id: Int) -> Unit) {
+fun DiscoverScreen(
+    id: Int,
+    onItemClick: (id: Int) -> Unit,
+    viewModel: DiscoverViewModel
+) {
     LaunchedEffect(key1 = true) {
         viewModel.getMovieGenres(id)
     }

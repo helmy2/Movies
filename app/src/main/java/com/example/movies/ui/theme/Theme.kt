@@ -10,9 +10,7 @@ private val DarkColorPalette = darkColors(
     background = DarkBackgroundColor
 )
 
-private val LightColorPalette = lightColors(
-    background = LightBackgroundColor
-)
+private val LightColorPalette = lightColors()
 
 @Composable
 fun MoviesTheme(

@@ -11,10 +11,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
-import androidx.navigation.NavController
 import com.example.movies.R
-import com.example.movies.ui.util.Screen
-import com.example.movies.util.Constants
+import com.example.movies.data.util.Constants
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

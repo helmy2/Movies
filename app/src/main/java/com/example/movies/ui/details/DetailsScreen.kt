@@ -8,11 +8,11 @@ import com.example.movies.ui.details.components.DetailsScreenComponents
 
 @Composable
 fun DetailsScreen(
-    viewModel: DetailsViewModel = viewModel(),
     id: Int,
     onMovieClick: (id: Int) -> Unit,
     onCastClick: (id: Int) -> Unit,
     onGenreClick: (id: Int) -> Unit,
+    viewModel: DetailsViewModel ,
 ) {
     LaunchedEffect(key1 = true) {
         viewModel.getDetails(id)

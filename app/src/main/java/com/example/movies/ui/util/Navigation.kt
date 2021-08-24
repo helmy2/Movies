@@ -1,14 +1,14 @@
 package com.example.movies.ui.util
 
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.movies.data.database.Authentication
 import com.example.movies.ui.details.DetailsScreen
 import com.example.movies.ui.details.DetailsViewModel
 import com.example.movies.ui.discover.DiscoverScreen
@@ -22,7 +22,11 @@ import com.example.movies.ui.search.SearchViewModel
 import com.example.movies.ui.splash.SplashScreen
 
 @Composable
-fun Navigation(connectionState: State<Boolean>) {
+fun Navigation(
+    connectionLiveData: ConnectionLiveData,
+    authentication: Authentication
+) {
+    val connectionState = connectionLiveData.observeAsState(false)
     val navController = rememberNavController()
 
     NavHost(
@@ -37,7 +41,7 @@ fun Navigation(connectionState: State<Boolean>) {
         }
         composable(Screen.HomeScreen.route) {
             if (connectionState.value)
-                HomeScreenComposable(navController)
+                HomeScreenComposable(navController, authentication)
             else
                 NoConnectionScreen()
         }
@@ -69,17 +73,21 @@ fun Navigation(connectionState: State<Boolean>) {
 }
 
 @Composable
-private fun HomeScreenComposable(navController: NavHostController) {
+private fun HomeScreenComposable(navController: NavHostController, authentication: Authentication) {
     val homeViewModel: HomeViewModel = hiltViewModel()
 
     HomeScreen(
         onMovieClick = { id ->
             navController.navigate(Screen.DetailsScreen.route + "/$id")
-        }, onSearchClick = {
+        },
+        onSearchClick = {
             navController.navigate(Screen.SearchScreen.route)
-        }, onGenreClick = { id ->
+        },
+        onGenreClick = { id ->
             navController.navigate(Screen.DiscoverScreen.route + "/$id")
-        }, viewModel = homeViewModel
+        },
+        viewModel = homeViewModel,
+        authentication = authentication,
     )
 }
 
@@ -144,8 +152,8 @@ fun DiscoverScreenComposable(navController: NavHostController, navBackStack: Nav
     val viewModel: DiscoverViewModel = hiltViewModel()
 
     DiscoverScreen(
-        id,
-        viewModel,
+        id = id,
+        viewModel = viewModel,
         onItemClick = {
             navController.navigate(Screen.DetailsScreen.route + "/$it")
         }

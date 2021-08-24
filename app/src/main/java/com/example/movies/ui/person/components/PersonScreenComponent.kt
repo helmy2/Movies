@@ -5,9 +5,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.movies.models.Image
-import com.example.movies.models.Person
-import com.example.movies.models.Result
+import com.example.movies.data.models.Image
+import com.example.movies.data.models.Person
+import com.example.movies.data.models.Result
 import com.example.movies.ui.details.components.ImageList
 import com.example.movies.ui.home.components.MoviesList
 

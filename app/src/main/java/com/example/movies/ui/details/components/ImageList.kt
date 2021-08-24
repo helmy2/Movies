@@ -10,10 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
-import com.example.movies.models.Image
+import com.example.movies.data.models.Image
 import com.example.movies.ui.theme.Padding
 import com.example.movies.ui.theme.Typography
-import com.example.movies.util.Constants.IMAGE_URL
+import com.example.movies.data.util.Constants.IMAGE_URL
 
 @Composable
 fun ImageList(imageList: List<Image>, title: String) {

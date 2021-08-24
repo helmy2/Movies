@@ -14,11 +14,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
-import com.example.movies.models.Person
+import com.example.movies.data.models.Person
 import com.example.movies.ui.theme.MoviesTheme
 import com.example.movies.ui.theme.Typography
-import com.example.movies.util.Constants.IMAGE_URL_ORIGINAL
-import com.example.movies.util.DemoMovieDataProvider
+import com.example.movies.data.util.Constants.IMAGE_URL_ORIGINAL
+import com.example.movies.data.util.DemoMovieDataProvider
 
 @Composable
 fun PersonInf(

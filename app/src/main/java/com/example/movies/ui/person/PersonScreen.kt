@@ -10,7 +10,7 @@ import com.example.movies.ui.person.components.PersonScreenComponent
 fun PersonScreen(
     id: Int,
     onMovieClick: (id: Int) -> Unit,
-    viewModel: PersonViewModel = viewModel()
+    viewModel: PersonViewModel
 ) {
     LaunchedEffect(key1 = true) {
         viewModel.getPersonDetails(id)

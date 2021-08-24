@@ -7,10 +7,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.movies.models.Cast
+import com.example.movies.data.models.Cast
 import com.example.movies.ui.theme.Padding
 import com.example.movies.ui.theme.Typography
-import com.example.movies.util.Constants.IMAGE_URL
+import com.example.movies.data.util.Constants.IMAGE_URL
 
 @Composable
 fun CastList(castList: List<Cast>, onCastClick: (id: Int) -> Unit) {

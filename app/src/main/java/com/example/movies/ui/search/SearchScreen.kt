@@ -3,23 +3,18 @@ package com.example.movies.ui.search
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Tab
-import androidx.compose.material.TabRow
-import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.movies.ui.search.components.EmptySearchScreenComponents
 import com.example.movies.ui.search.components.SearchAppBar
 import com.example.movies.ui.search.components.SearchScreenComponents
-import com.example.movies.util.Type
+import com.example.movies.data.util.Type
 
 @Composable
 fun SearchScreen(
     onMovieClick: (id: Int) -> Unit,
     onCastClick: (id: Int) -> Unit,
-    viewModel: SearchViewModel = viewModel()
+    viewModel: SearchViewModel
 ) {
     var searchText by remember { viewModel.searchText }
     var indexState by remember { viewModel.indexState }

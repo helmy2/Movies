@@ -14,11 +14,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.IOException
 import java.net.InetSocketAddress
+import javax.inject.Inject
 import javax.net.SocketFactory
 
 private const val TAG = "ConnectionLiveData"
 
-class ConnectionLiveData(context: Context) : LiveData<Boolean>() {
+class ConnectionLiveData(
+    context: Context
+) : LiveData<Boolean>() {
 
     private lateinit var networkCallback: ConnectivityManager.NetworkCallback
     private val cm = context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -55,8 +58,8 @@ class ConnectionLiveData(context: Context) : LiveData<Boolean>() {
                 // check if this network actually has internet
                 CoroutineScope(Dispatchers.IO).launch {
                     val hasInternet = DoesNetworkHaveInternet.execute(network.socketFactory)
-                    if(hasInternet){
-                        withContext(Dispatchers.Main){
+                    if (hasInternet) {
+                        withContext(Dispatchers.Main) {
                             Log.d(TAG, "onAvailable: adding network. $network")
                             validNetworks.add(network)
                             checkValidNetworks()
@@ -84,14 +87,14 @@ object DoesNetworkHaveInternet {
 
     // Make sure to execute this on a background thread.
     fun execute(socketFactory: SocketFactory): Boolean {
-        return try{
+        return try {
             Log.d(TAG, "PINGING google.")
             val socket = socketFactory.createSocket() ?: throw IOException("Socket is null.")
             socket.connect(InetSocketAddress("8.8.8.8", 53), 1500)
             socket.close()
             Log.d(TAG, "PING success.")
             true
-        }catch (e: IOException){
+        } catch (e: IOException) {
             Log.e(TAG, "No internet connection. $e")
             false
         }

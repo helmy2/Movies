@@ -6,9 +6,9 @@ import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import com.example.movies.models.Cast
-import com.example.movies.models.Result
-import com.example.movies.util.Type
+import com.example.movies.data.models.Cast
+import com.example.movies.data.models.Result
+import com.example.movies.data.util.Type
 
 @Composable
 fun SearchScreenComponents(

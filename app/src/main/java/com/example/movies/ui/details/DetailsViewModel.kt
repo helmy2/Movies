@@ -4,10 +4,10 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movies.models.Cast
-import com.example.movies.models.Image
-import com.example.movies.models.Result
-import com.example.movies.repository.DetailsRepository
+import com.example.movies.data.models.Cast
+import com.example.movies.data.models.Image
+import com.example.movies.data.models.Result
+import com.example.movies.data.repository.DetailsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

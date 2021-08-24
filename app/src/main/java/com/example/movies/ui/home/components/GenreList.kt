@@ -5,7 +5,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.movies.models.Genre
+import com.example.movies.data.models.Genre
 import com.example.movies.ui.details.components.GenreChip
 import com.example.movies.ui.theme.Padding
 

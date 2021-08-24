@@ -7,13 +7,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.movies.models.Genre
+import com.example.movies.data.models.Genre
 import com.example.movies.ui.home.components.RatingAutoSizeText
 import com.example.movies.ui.theme.Padding
 import com.example.movies.ui.theme.Typography
 import com.example.movies.ui.util.Chip
 import com.example.movies.ui.util.Ratingbar
-import com.example.movies.util.toYearFormat
+import com.example.movies.data.util.toYearFormat
 
 @Composable
 fun InformationBox(
