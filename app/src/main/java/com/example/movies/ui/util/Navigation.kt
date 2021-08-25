@@ -8,7 +8,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.movies.data.database.Authentication
+import com.example.movies.ui.MainActivity
 import com.example.movies.ui.details.DetailsScreen
 import com.example.movies.ui.details.DetailsViewModel
 import com.example.movies.ui.discover.DiscoverScreen
@@ -20,11 +20,12 @@ import com.example.movies.ui.person.PersonViewModel
 import com.example.movies.ui.search.SearchScreen
 import com.example.movies.ui.search.SearchViewModel
 import com.example.movies.ui.splash.SplashScreen
+import com.example.movies.ui.user.UserScreen
+import com.example.movies.ui.user.UserViewModel
 
 @Composable
 fun Navigation(
     connectionLiveData: ConnectionLiveData,
-    authentication: Authentication
 ) {
     val connectionState = connectionLiveData.observeAsState(false)
     val navController = rememberNavController()
@@ -41,7 +42,7 @@ fun Navigation(
         }
         composable(Screen.HomeScreen.route) {
             if (connectionState.value)
-                HomeScreenComposable(navController, authentication)
+                HomeScreenComposable(navController)
             else
                 NoConnectionScreen()
         }
@@ -69,11 +70,15 @@ fun Navigation(
             else
                 NoConnectionScreen()
         }
+        composable(Screen.UserScreen.route) {
+            val viewModel: UserViewModel = hiltViewModel()
+            UserScreen(viewModel)
+        }
     }
 }
 
 @Composable
-private fun HomeScreenComposable(navController: NavHostController, authentication: Authentication) {
+private fun HomeScreenComposable(navController: NavHostController) {
     val homeViewModel: HomeViewModel = hiltViewModel()
 
     HomeScreen(
@@ -86,8 +91,10 @@ private fun HomeScreenComposable(navController: NavHostController, authenticatio
         onGenreClick = { id ->
             navController.navigate(Screen.DiscoverScreen.route + "/$id")
         },
+        onUserClick = {
+            navController.navigate(Screen.UserScreen.route)
+        },
         viewModel = homeViewModel,
-        authentication = authentication,
     )
 }
 

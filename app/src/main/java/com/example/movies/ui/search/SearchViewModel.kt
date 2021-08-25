@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movies.data.models.Cast
 import com.example.movies.data.models.Result
-import com.example.movies.data.repository.SearchRepository
+import com.example.movies.data.repository.repository.SearchRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

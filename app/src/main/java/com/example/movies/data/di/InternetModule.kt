@@ -4,6 +4,8 @@ import android.content.Context
 import com.example.movies.data.api.*
 import com.example.movies.ui.util.ConnectionLiveData
 import com.example.movies.data.util.Constants.BASE_URL
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -55,5 +57,11 @@ object InternetModule {
     @Provides
     @Singleton
     fun provideConnection(@ApplicationContext context: Context) = ConnectionLiveData(context)
+
+    @Provides
+    @Singleton
+    fun provideFirebaseAuth() = Firebase.auth
+
+
 }
 

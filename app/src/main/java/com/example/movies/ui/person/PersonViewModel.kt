@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.movies.data.models.Image
 import com.example.movies.data.models.Person
 import com.example.movies.data.models.Result
-import com.example.movies.data.repository.PersonRepository
+import com.example.movies.data.repository.repository.PersonRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

@@ -5,10 +5,11 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movies.data.database.Authentication
 import com.example.movies.data.models.Genre
 import com.example.movies.data.models.Result
-import com.example.movies.data.repository.HomeRepository
+import com.example.movies.data.repository.repository.HomeRepository
+import com.example.movies.data.repository.repository.UserRepository
+import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,7 +17,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val repository: HomeRepository
+    private val homeRepository: HomeRepository,
+    private val userRepository: UserRepository
 ) : ViewModel() {
 
     var popularResults: MutableState<List<Result>?> = mutableStateOf(null)
@@ -37,34 +39,34 @@ class HomeViewModel @Inject constructor(
     var genreListResults: MutableState<List<Genre>?> = mutableStateOf(null)
         private set
 
-    var authentication: MutableState<Authentication?> = mutableStateOf(null)
+    var currentUser: MutableState<FirebaseUser?> = mutableStateOf(null)
 
     private fun getPopularMovies() = viewModelScope.launch {
-        popularResults.value = repository.getPopularMovies()
+        popularResults.value = homeRepository.getPopularMovies()
     }
 
     private fun getUpcomingMovies() = viewModelScope.launch {
-        upcomingResults.value = repository.getUpcomingMovies()
+        upcomingResults.value = homeRepository.getUpcomingMovies()
     }
 
     private fun getNowPlayingMovies() = viewModelScope.launch {
-        nowPlayingResults.value = repository.getNowPlayingMovies()
+        nowPlayingResults.value = homeRepository.getNowPlayingMovies()
     }
 
     private fun getTopRatedMovies() = viewModelScope.launch {
-        topRatedResults.value = repository.getTopRatedMovies()
+        topRatedResults.value = homeRepository.getTopRatedMovies()
     }
 
     private fun getAnimationMovies() = viewModelScope.launch {
-        animationResults.value = repository.getAnimationMovies()
-    }
-    private fun getGenreListMovies() = viewModelScope.launch {
-        genreListResults.value = repository.getGenreListMovies()
-        Log.i("TAG", "getGenreListMovies: ${genreListResults.value}")
+        animationResults.value = homeRepository.getAnimationMovies()
     }
 
-    fun getAuthentication(authentication: Authentication) {
-            this.authentication.value = authentication
+    private fun getGenreListMovies() = viewModelScope.launch {
+        genreListResults.value = homeRepository.getGenreListMovies()
+    }
+
+    private fun getCurrentUser() = viewModelScope.launch {
+        currentUser.value = userRepository.getCurrentUser()
     }
 
 
@@ -75,5 +77,6 @@ class HomeViewModel @Inject constructor(
         getUpcomingMovies()
         getAnimationMovies()
         getGenreListMovies()
+        getCurrentUser()
     }
 }

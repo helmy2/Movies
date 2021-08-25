@@ -1,4 +1,4 @@
-package com.example.movies.data.repository
+package com.example.movies.data.repository.implementations
 
 
 import android.util.Log
@@ -6,13 +6,14 @@ import com.example.movies.data.api.PersonApi
 import com.example.movies.data.models.Image
 import com.example.movies.data.models.Person
 import com.example.movies.data.models.Result
+import com.example.movies.data.repository.repository.PersonRepository
 import javax.inject.Inject
 
 private const val TAG = "PersonRepository"
 
 class PersonRepositoryImpl @Inject constructor(
     private val api: PersonApi,
-) : PersonRepository{
+) : PersonRepository {
 
     override suspend fun getPersonDetails(id: Int): Person? = try {
         val response = api.getPersonDetails(id)

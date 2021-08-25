@@ -1,14 +1,11 @@
-package com.example.movies.data.repository
+package com.example.movies.data.repository.implementations
 
 
 import android.util.Log
-import androidx.activity.ComponentActivity
 import com.example.movies.data.api.HomeApi
-import com.example.movies.data.database.Authentication
 import com.example.movies.data.models.Genre
 import com.example.movies.data.models.Result
-import com.example.movies.ui.MainActivity
-import dagger.hilt.android.qualifiers.ApplicationContext
+import com.example.movies.data.repository.repository.HomeRepository
 import javax.inject.Inject
 
 private const val TAG = "HomeRepository"

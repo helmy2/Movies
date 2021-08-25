@@ -5,7 +5,7 @@ import android.annotation.SuppressLint
 sealed class Screen(val route: String) {
     @SuppressLint("CustomSplashScreen")
     object SplashScreen : Screen("splash_screen")
-    object LoginScreen : Screen("login_screen")
+    object UserScreen : Screen("user_screen")
     object HomeScreen : Screen("home_screen")
     object DetailsScreen : Screen("details_screen")
     object PersonScreen : Screen("person_screen")

@@ -1,10 +1,11 @@
-package com.example.movies.data.repository
+package com.example.movies.data.repository.implementations
 
 
 import android.util.Log
 import com.example.movies.data.api.SearchApi
 import com.example.movies.data.models.Cast
 import com.example.movies.data.models.Result
+import com.example.movies.data.repository.repository.SearchRepository
 import javax.inject.Inject
 
 private const val TAG = "SearchRepository"

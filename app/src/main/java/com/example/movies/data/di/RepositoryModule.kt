@@ -1,6 +1,7 @@
 package com.example.movies.data.di
 
-import com.example.movies.data.repository.*
+import com.example.movies.data.repository.implementations.*
+import com.example.movies.data.repository.repository.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -40,4 +41,10 @@ abstract class RepositoryModule {
     abstract fun provideSearchRepository(
         searchRepositoryImpl: SearchRepositoryImpl
     ): SearchRepository
+
+    @Binds
+    @Singleton
+    abstract fun provideUserRepository(
+        userRepositoryImpl: UserRepositoryImpl
+    ): UserRepository
 }

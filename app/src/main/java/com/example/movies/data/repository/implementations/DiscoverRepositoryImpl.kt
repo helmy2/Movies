@@ -1,16 +1,17 @@
-package com.example.movies.data.repository
+package com.example.movies.data.repository.implementations
 
 
 import android.util.Log
 import com.example.movies.data.api.DiscoverApi
 import com.example.movies.data.models.Result
+import com.example.movies.data.repository.repository.DiscoverRepository
 import javax.inject.Inject
 
 private const val TAG = "DiscoverRepository"
 
 class DiscoverRepositoryImpl @Inject constructor(
     private val api: DiscoverApi,
-) : DiscoverRepository{
+) : DiscoverRepository {
 
     override suspend fun getMovieGenres(genreId: Int, pageNumber: Int): List<Result>? = try {
         val response = api.getMovieGenres(genreId, pageNumber)
