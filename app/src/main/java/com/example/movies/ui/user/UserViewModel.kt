@@ -21,7 +21,9 @@ class UserViewModel @Inject constructor(
     var currentUser: MutableState<FirebaseUser?> = mutableStateOf(null)
 
     private fun getCurrentUser() = viewModelScope.launch {
-        currentUser.value = userRepository.getCurrentUser()
+        userRepository.currentUser {
+            currentUser.value = it
+        }
     }
 
     fun firebaseAuthWithGoogle(idToken: String) {

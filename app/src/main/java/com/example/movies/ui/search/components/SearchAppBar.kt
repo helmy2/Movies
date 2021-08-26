@@ -29,7 +29,7 @@ fun SearchAppBar(
                 Text(text = "Search")
             },
             modifier = Modifier.fillMaxWidth(),
-            leadingIcon = {
+            trailingIcon = {
                 Icon(
                     Icons.Default.Search,
                     contentDescription = "",

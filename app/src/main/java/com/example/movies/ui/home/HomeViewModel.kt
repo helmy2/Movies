@@ -66,7 +66,9 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getCurrentUser() = viewModelScope.launch {
-        currentUser.value = userRepository.getCurrentUser()
+        userRepository.currentUser {
+            currentUser.value = it
+        }
     }
 
 

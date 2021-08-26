@@ -1,6 +1,7 @@
 package com.example.movies.data.repository.implementations
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import com.example.movies.data.repository.repository.UserRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -17,8 +18,10 @@ class UserRepositoryImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth
 ) : UserRepository {
 
-    override fun getCurrentUser(): FirebaseUser? {
-        return firebaseAuth.currentUser
+    override fun currentUser(onAuthChange:(FirebaseUser?)->Unit) {
+        firebaseAuth.addAuthStateListener {
+            onAuthChange(it.currentUser)
+        }
     }
 
     override fun loginWithGoogle(idToken: String) {
