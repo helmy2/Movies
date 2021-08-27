@@ -24,15 +24,17 @@ fun DetailsScreenComponents(
     recommendationsList: List<Result>?,
     collectionList: List<Result>?,
     imageList: List<Image>?,
+    isFavorite: Boolean?,
     onMovieClick: (id: Int) -> Unit,
     onCastClick: (id: Int) -> Unit,
     onGenreClick: (id: Int) -> Unit,
+    onFavoriteClick: (id: Int) -> Unit,
 ) {
     Column(
         modifier = Modifier.verticalScroll(state = rememberScrollState(), enabled = true)
     ) {
         result?.let {
-            TopComponent(result = it, onGenreClick)
+            TopComponent(result = it, isFavorite, onGenreClick, onFavoriteClick)
 
             Column(modifier = Modifier.padding(horizontal = Padding.large)) {
                 Text(
@@ -80,9 +82,11 @@ fun DetailsScreenComponentsPreview() {
             recommendationsList = DemoMovieDataProvider.movies,
             collectionList = DemoMovieDataProvider.movies,
             imageList = null,
+            isFavorite = false,
             onMovieClick = {},
             onCastClick = {},
             onGenreClick = {},
+            onFavoriteClick = {},
         )
     }
 }

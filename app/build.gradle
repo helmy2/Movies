@@ -94,6 +94,7 @@ dependencies {
     implementation "com.google.dagger:dagger:2.38.1"
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
     implementation 'com.google.android.gms:play-services-auth:19.2.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:23.0.3'
     kapt "com.google.dagger:dagger-compiler:2.38.1"
 
     // Dagger Android

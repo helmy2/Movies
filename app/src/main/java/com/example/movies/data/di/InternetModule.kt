@@ -5,6 +5,7 @@ import com.example.movies.data.api.*
 import com.example.movies.ui.util.ConnectionLiveData
 import com.example.movies.data.util.Constants.BASE_URL
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import dagger.Module
 import dagger.Provides
@@ -61,6 +62,11 @@ object InternetModule {
     @Provides
     @Singleton
     fun provideFirebaseAuth() = Firebase.auth
+
+
+    @Provides
+    @Singleton
+    fun provideFirebaseFirestore() = Firebase.firestore
 
 
 }

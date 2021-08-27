@@ -72,7 +72,9 @@ fun Navigation(
         }
         composable(Screen.UserScreen.route) {
             val viewModel: UserViewModel = hiltViewModel()
-            UserScreen(viewModel)
+            UserScreen(viewModel) {
+                navController.navigate(Screen.DetailsScreen.route + "/$it")
+            }
         }
     }
 }

@@ -3,7 +3,6 @@ package com.example.movies.ui.details
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.movies.ui.details.components.DetailsScreenComponents
 
 @Composable
@@ -12,7 +11,7 @@ fun DetailsScreen(
     onMovieClick: (id: Int) -> Unit,
     onCastClick: (id: Int) -> Unit,
     onGenreClick: (id: Int) -> Unit,
-    viewModel: DetailsViewModel ,
+    viewModel: DetailsViewModel,
 ) {
     LaunchedEffect(key1 = true) {
         viewModel.getDetails(id)
@@ -23,16 +22,26 @@ fun DetailsScreen(
     val recommendationsList by viewModel.recommendationsList
     val collectionList by viewModel.collectionList
     val imageList by viewModel.imageList
+    val isFavorite by viewModel.isFavorite
 
     DetailsScreenComponents(
         result,
-        castList,
-        recommendationsList,
-        collectionList,
-        imageList,
-        onMovieClick,
-        onCastClick,
-        onGenreClick
+        castList = castList,
+        recommendationsList = recommendationsList,
+        collectionList = collectionList,
+        imageList = imageList,
+        onMovieClick = onMovieClick,
+        onCastClick = onCastClick,
+        onGenreClick = onGenreClick,
+        onFavoriteClick = { id ->
+            isFavorite?.let {
+                if (it)
+                    viewModel.deleteFromFavoriteList(id)
+                else
+                    viewModel.addToFavoriteList(id)
+            }
+        },
+        isFavorite = isFavorite,
     )
 }
 

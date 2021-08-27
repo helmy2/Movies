@@ -18,8 +18,10 @@ import com.example.movies.data.util.toHourFormat
 @Composable
 fun TopComponent(
     result: Result,
+    isFavorite: Boolean?,
     onGenreClick: (id: Int) -> Unit,
-    modifier: Modifier = Modifier
+    onFavoriteClick: (id: Int) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val painter = rememberImagePainter(
         IMAGE_URL_ORIGINAL + result.backdropPath,
@@ -54,7 +56,7 @@ fun TopComponent(
                 .fillMaxSize()
         )
         InformationBox(
-            result.genres,
+            id = result.id,
             title = result.title,
             runtime = result.runtime.toHourFormat(),
             voteCount = result.voteCount.toString(),
@@ -62,6 +64,9 @@ fun TopComponent(
             voteAverage = result.voteAverage.toFloat(),
             onGenreClick = onGenreClick,
             modifier = Modifier.align(Alignment.BottomCenter),
+            onFavoriteClick = onFavoriteClick,
+            isFavorite = isFavorite,
+            genres = result.genres
         )
     }
 }

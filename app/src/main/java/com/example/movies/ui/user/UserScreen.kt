@@ -11,12 +11,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -24,6 +21,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import coil.compose.rememberImagePainter
 import com.example.movies.R
+import com.example.movies.data.models.Result
+import com.example.movies.ui.discover.components.DiscoverList
 import com.example.movies.ui.theme.Padding
 import com.example.movies.ui.theme.Typography
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -36,7 +35,9 @@ private const val TAG = "UserScreen"
 
 @Composable
 
-fun UserScreen(viewModel: UserViewModel) {
+fun UserScreen(
+    viewModel: UserViewModel, onMovieClick: (id: Int) -> Unit,
+) {
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult(),
         onResult = { result ->
@@ -65,17 +66,32 @@ fun UserScreen(viewModel: UserViewModel) {
     )
 
     val currentUser = remember { viewModel.currentUser }
+    val favoriteList: List<Result>? by viewModel.favoriteLast
+    LaunchedEffect(key1 = favoriteList, block = {
+        Log.i(TAG, "UserScreen: $favoriteList")
+    })
+
     val id = stringResource(id = R.string.default_web_client_id)
     val context = LocalContext.current
-    UserScreenComponent(currentUser.value, id, context, launcher, viewModel)
+    UserScreenComponent(
+        currentUser.value,
+        favoriteList,
+        id,
+        context,
+        launcher,
+        onMovieClick,
+        viewModel
+    )
 }
 
 @Composable
 fun UserScreenComponent(
     currentUser: FirebaseUser?,
+    favoriteList: List<Result>?,
     id: String,
     context: Context,
     launcher: ManagedActivityResultLauncher<Intent, ActivityResult>,
+    onItemClick: (id: Int) -> Unit,
     viewModel: UserViewModel
 ) {
     val painter = rememberImagePainter(
@@ -104,7 +120,7 @@ fun UserScreenComponent(
                 val signInIntent = googleSignInClient.signInIntent
                 launcher.launch(signInIntent)
             }) {
-                Text(text = "Log In With Google",style = Typography.h5)
+                Text(text = "Log In With Google", style = Typography.h5)
             }
         } else {
             Box(Modifier.align(Alignment.End)) {
@@ -131,6 +147,19 @@ fun UserScreenComponent(
                     Text(text = currentUser.email.toString(), style = Typography.body2)
                 }
             }
+        }
+
+        Text(
+            text = "Favorite List",
+            style = Typography.h5,
+            modifier = Modifier.padding(vertical = Padding.medium)
+        )
+        favoriteList?.let {
+            DiscoverList(
+                results = it,
+                onItemClick = onItemClick,
+                onEndItem = {}
+            )
         }
     }
 }
