@@ -47,10 +47,4 @@ abstract class RepositoryModule {
     abstract fun provideUserRepository(
         userRepositoryImpl: UserRepositoryImpl
     ): UserRepository
-
-    @Binds
-    @Singleton
-    abstract fun provideDatabaseRepository(
-        databaseRepositoryImpl: DatabaseRepositoryImpl
-    ): DatabaseRepository
 }

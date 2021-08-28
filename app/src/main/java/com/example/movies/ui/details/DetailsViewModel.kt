@@ -7,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.movies.data.models.Cast
 import com.example.movies.data.models.Image
 import com.example.movies.data.models.Result
-import com.example.movies.data.repository.repository.DatabaseRepository
 import com.example.movies.data.repository.repository.DetailsRepository
+import com.example.movies.data.repository.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
     private val detailsRepository: DetailsRepository,
-    private val databaseRepository: DatabaseRepository
+    private val userRepository: UserRepository
 ) : ViewModel() {
 
     var results: MutableState<Result?> = mutableStateOf(null)
@@ -60,16 +60,16 @@ class DetailsViewModel @Inject constructor(
     }
 
     private fun getIsFavorite(id: Int) = viewModelScope.launch {
-        isFavorite.value = databaseRepository.isFavorite(id)
+        isFavorite.value = userRepository.isFavorite(id)
     }
 
     fun addToFavoriteList(id: Int) = viewModelScope.launch {
-        databaseRepository.addToFavoriteList(id)
+        userRepository.addToFavoriteList(id)
         getIsFavorite(id)
     }
 
     fun deleteFromFavoriteList(id: Int) = viewModelScope.launch {
-        databaseRepository.deleteFromFavoriteList(id)
+        userRepository.deleteFromFavoriteList(id)
         getIsFavorite(id)
     }
 

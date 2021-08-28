@@ -2,8 +2,8 @@ package com.example.movies.data.di
 
 import android.content.Context
 import com.example.movies.data.api.*
-import com.example.movies.ui.util.ConnectionLiveData
 import com.example.movies.data.util.Constants.BASE_URL
+import com.example.movies.ui.util.ConnectionLiveData
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase

@@ -149,12 +149,12 @@ fun UserScreenComponent(
             }
         }
 
-        Text(
-            text = "Favorite List",
-            style = Typography.h5,
-            modifier = Modifier.padding(vertical = Padding.medium)
-        )
         favoriteList?.let {
+            Text(
+                text = "Favorite List",
+                style = Typography.h5,
+                modifier = Modifier.padding(vertical = Padding.medium)
+            )
             DiscoverList(
                 results = it,
                 onItemClick = onItemClick,
