@@ -17,10 +17,10 @@ private const val TAG = "UserRepositoryImpl"
 
 class UserRepositoryImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
-    db: FirebaseFirestore
+    private val db: FirebaseFirestore
 ) : UserRepository {
 
-    override fun currentUser(onAuthChange:(FirebaseUser?)->Unit) {
+    override fun currentUser(onAuthChange: (FirebaseUser?) -> Unit) {
         firebaseAuth.addAuthStateListener {
             onAuthChange(it.currentUser)
         }
@@ -72,11 +72,10 @@ class UserRepositoryImpl @Inject constructor(
         firebaseAuth.signOut()
     }
 
-    private val userId = firebaseAuth.currentUser?.uid ?: " "
-    private val reference = db.collection("users").document(userId).collection("movies")
-
     override suspend fun addToFavoriteList(id: Int) {
-        if (userId != " ") {
+        val userId = firebaseAuth.currentUser?.uid
+        userId?.let {
+            val reference = db.collection("users").document(userId).collection("movies")
             reference.add(hashMapOf(Pair("id", id)))
                 .addOnSuccessListener { documentReference ->
                     Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
@@ -88,7 +87,9 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getFavoriteList(): List<Int>? {
-        if (userId != " ") {
+        val userId = firebaseAuth.currentUser?.uid
+        userId?.let {
+            val reference = db.collection("users").document(userId).collection("movies")
             val querySnapshot = reference
                 .get()
                 .addOnSuccessListener { result ->
@@ -111,7 +112,9 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override suspend fun deleteFromFavoriteList(id: Int) {
-        if (userId != " ") {
+        val userId = firebaseAuth.currentUser?.uid
+        userId?.let {
+            val reference = db.collection("users").document(userId).collection("movies")
             val personQuery = reference
                 .whereEqualTo("id", id)
                 .get()
@@ -133,7 +136,9 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override suspend fun isFavorite(id: Int): Boolean? {
-        if (userId != " ") {
+        val userId = firebaseAuth.currentUser?.uid
+        userId?.let {
+            val reference = db.collection("users").document(userId).collection("movies")
             val personQuery = reference
                 .whereEqualTo("id", id)
                 .get()

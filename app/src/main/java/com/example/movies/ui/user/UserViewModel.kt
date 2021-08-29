@@ -18,11 +18,20 @@ class UserViewModel @Inject constructor(
     private val userRepository: UserRepository,
     private val detailsRepository: DetailsRepository,
 ) : ViewModel() {
+
     var currentUser: MutableState<FirebaseUser?> = mutableStateOf(null)
+        private set
+    var favoriteLast: MutableState<List<Result>?> = mutableStateOf(null)
+        private set
 
     private fun getCurrentUser() = viewModelScope.launch {
         userRepository.currentUser {
             currentUser.value = it
+            if (it == null)
+                favoriteLast.value = null
+            else
+                getFavoriteList()
+
         }
     }
 
@@ -33,13 +42,6 @@ class UserViewModel @Inject constructor(
     fun signOut() {
         userRepository.signOut()
     }
-
-    init {
-        getCurrentUser()
-    }
-
-    var favoriteLast: MutableState<List<Result>?> = mutableStateOf(null)
-        private set
 
     private fun getFavoriteList() = viewModelScope.launch {
         val list = userRepository.getFavoriteList()
@@ -55,6 +57,6 @@ class UserViewModel @Inject constructor(
     }
 
     init {
-        getFavoriteList()
+        getCurrentUser()
     }
 }
