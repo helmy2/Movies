@@ -6,6 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import com.example.movies.ui.home.components.HomeAppBar
 import com.example.movies.ui.home.components.HomeContent
+import com.example.movies.ui.util.NoConnectionScreen
 
 
 @Composable
@@ -22,28 +23,32 @@ fun HomeScreen(
     val upcomingResults by remember { viewModel.upcomingResults }
     val animationResults by remember { viewModel.animationResults }
     val genreListResults by remember { viewModel.genreListResults }
-    val currentUser by remember {viewModel.currentUser }
+    val currentUser by remember { viewModel.currentUser }
 
-    Scaffold(
-        topBar = {
-            HomeAppBar(
-                onSearchClick = onSearchClick,
-                onUserClick = onUserClick,
-                currentUser
+
+    if (viewModel.connection.value)
+        Scaffold(
+            topBar = {
+                HomeAppBar(
+                    onSearchClick = onSearchClick,
+                    onUserClick = onUserClick,
+                    currentUser
+                )
+            }
+        ) {
+            HomeContent(
+                genreListResults,
+                onGenreClick,
+                nowPlayingResults,
+                onMovieClick,
+                animationResults,
+                upcomingResults,
+                topRatedResults,
+                popularResults
             )
         }
-    ) {
-        HomeContent(
-            genreListResults,
-            onGenreClick,
-            nowPlayingResults,
-            onMovieClick,
-            animationResults,
-            upcomingResults,
-            topRatedResults,
-            popularResults
-        )
-    }
+    else
+        NoConnectionScreen()
 
 }
 

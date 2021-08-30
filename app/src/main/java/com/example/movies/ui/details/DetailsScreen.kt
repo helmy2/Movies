@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import com.example.movies.ui.details.components.DetailsScreenComponents
+import com.example.movies.ui.util.NoConnectionScreen
 
 @Composable
 fun DetailsScreen(
@@ -24,24 +25,27 @@ fun DetailsScreen(
     val imageList by viewModel.imageList
     val isFavorite by viewModel.isFavorite
 
-    DetailsScreenComponents(
-        result,
-        castList = castList,
-        recommendationsList = recommendationsList,
-        collectionList = collectionList,
-        imageList = imageList,
-        onMovieClick = onMovieClick,
-        onCastClick = onCastClick,
-        onGenreClick = onGenreClick,
-        onFavoriteClick = { id ->
-            isFavorite?.let {
-                if (it)
-                    viewModel.deleteFromFavoriteList(id)
-                else
-                    viewModel.addToFavoriteList(id)
-            }
-        },
-        isFavorite = isFavorite,
-    )
+    if (viewModel.connection.value)
+        DetailsScreenComponents(
+            result,
+            castList = castList,
+            recommendationsList = recommendationsList,
+            collectionList = collectionList,
+            imageList = imageList,
+            onMovieClick = onMovieClick,
+            onCastClick = onCastClick,
+            onGenreClick = onGenreClick,
+            onFavoriteClick = { id ->
+                isFavorite?.let {
+                    if (it)
+                        viewModel.deleteFromFavoriteList(id)
+                    else
+                        viewModel.addToFavoriteList(id)
+                }
+            },
+            isFavorite = isFavorite,
+        )
+    else
+        NoConnectionScreen()
 }
 

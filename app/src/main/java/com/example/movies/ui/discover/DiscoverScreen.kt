@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import com.example.movies.ui.discover.components.DiscoverList
+import com.example.movies.ui.util.NoConnectionScreen
 
 @Composable
 fun DiscoverScreen(
@@ -16,14 +17,17 @@ fun DiscoverScreen(
     }
     val results by viewModel.results
 
-    results?.let {
-        DiscoverList(
-            results = it,
-            onItemClick = onItemClick,
-            onEndItem = {
-                viewModel.getMovieGenres(id)
-            }
-        )
-    }
+    if (viewModel.connection.value)
+        results?.let {
+            DiscoverList(
+                results = it,
+                onItemClick = onItemClick,
+                onEndItem = {
+                    viewModel.getMovieGenres(id)
+                }
+            )
+        }
+    else
+        NoConnectionScreen()
 }
 

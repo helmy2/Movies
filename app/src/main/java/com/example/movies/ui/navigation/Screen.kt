@@ -1,4 +1,4 @@
-package com.example.movies.ui.util
+package com.example.movies.ui.navigation
 
 import android.annotation.SuppressLint
 

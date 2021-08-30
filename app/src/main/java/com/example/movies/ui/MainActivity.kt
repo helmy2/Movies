@@ -6,23 +6,19 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import com.example.movies.ui.theme.MoviesTheme
-import com.example.movies.ui.util.ConnectionLiveData
-import com.example.movies.ui.util.Navigation
+import com.example.movies.ui.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @Inject
-    lateinit var connectionLiveData: ConnectionLiveData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MoviesTheme {
+            MoviesTheme(darkTheme = true) {
                 Surface(color = MaterialTheme.colors.background) {
-                    Navigation(connectionLiveData = connectionLiveData)
+                    Navigation()
                 }
             }
         }

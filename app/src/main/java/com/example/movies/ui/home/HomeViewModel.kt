@@ -8,6 +8,7 @@ import com.example.movies.data.models.Genre
 import com.example.movies.data.models.Result
 import com.example.movies.data.repository.repository.HomeRepository
 import com.example.movies.data.repository.repository.UserRepository
+import com.example.movies.ui.util.ConnectionLiveData
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -17,8 +18,12 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val homeRepository: HomeRepository,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val connectionLiveData: ConnectionLiveData
 ) : ViewModel() {
+
+    var connection: MutableState<Boolean> = mutableStateOf(false)
+        private set
 
     var popularResults: MutableState<List<Result>?> = mutableStateOf(null)
         private set
@@ -70,14 +75,18 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-
     init {
-        getPopularMovies()
-        getTopRatedMovies()
-        getNowPlayingMovies()
-        getUpcomingMovies()
-        getAnimationMovies()
-        getGenreListMovies()
-        getCurrentUser()
+        connectionLiveData.observeForever {
+            if (it) {
+                connection.value = true
+                getPopularMovies()
+                getTopRatedMovies()
+                getNowPlayingMovies()
+                getUpcomingMovies()
+                getAnimationMovies()
+                getGenreListMovies()
+                getCurrentUser()
+            }
+        }
     }
 }

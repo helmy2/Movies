@@ -9,6 +9,7 @@ import com.example.movies.data.models.Image
 import com.example.movies.data.models.Result
 import com.example.movies.data.repository.repository.DetailsRepository
 import com.example.movies.data.repository.repository.UserRepository
+import com.example.movies.ui.util.ConnectionLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,8 +17,12 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
     private val detailsRepository: DetailsRepository,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val connectionLiveData: ConnectionLiveData
 ) : ViewModel() {
+
+    var connection: MutableState<Boolean> = mutableStateOf(false)
+        private set
 
     var results: MutableState<Result?> = mutableStateOf(null)
         private set
@@ -75,10 +80,15 @@ class DetailsViewModel @Inject constructor(
 
 
     fun getDetails(id: Int) {
-        getMovieDetails(id)
-        getMovieCast(id)
-        getMovieRecommendations(id)
-        getMovieImages(id)
-        getIsFavorite(id)
+        connectionLiveData.observeForever {
+            if (it) {
+                connection.value = true
+                getMovieDetails(id)
+                getMovieCast(id)
+                getMovieRecommendations(id)
+                getMovieImages(id)
+                getIsFavorite(id)
+            }
+        }
     }
 }

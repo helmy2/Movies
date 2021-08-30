@@ -1,9 +1,11 @@
 package com.example.movies.ui.search.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -16,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 fun SearchAppBar(
     value: String,
     onValueChange: (String) -> Unit,
+    onBackClicked: () -> Unit
 ) {
     val focusManager = LocalFocusManager.current
     TopAppBar(
@@ -34,6 +37,15 @@ fun SearchAppBar(
                     Icons.Default.Search,
                     contentDescription = "",
                     modifier = Modifier
+                )
+            },
+            leadingIcon = {
+                Icon(
+                    Icons.Default.ArrowBack,
+                    contentDescription = "",
+                    modifier = Modifier.clickable {
+                        onBackClicked()
+                    }
                 )
             },
             singleLine = true,
@@ -57,5 +69,5 @@ fun SearchAppBar(
 @Preview
 @Composable
 fun SearchAppBarPreview() {
-    SearchAppBar(value = "", onValueChange = {})
+    SearchAppBar(value = "", onValueChange = {},{})
 }

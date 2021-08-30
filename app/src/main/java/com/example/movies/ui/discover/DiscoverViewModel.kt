@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movies.data.models.Result
 import com.example.movies.data.repository.repository.DiscoverRepository
+import com.example.movies.ui.util.ConnectionLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -13,8 +14,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DiscoverViewModel @Inject constructor(
-    private val repository: DiscoverRepository
+    private val repository: DiscoverRepository,
+    private val connectionLiveData: ConnectionLiveData
 ) : ViewModel() {
+    var connection: MutableState<Boolean> = mutableStateOf(false)
+        private set
+
     var results: MutableState<List<Result>?> = mutableStateOf(null)
         private set
 
@@ -30,6 +35,12 @@ class DiscoverViewModel @Inject constructor(
         }
 
         results.value = response
+    }
+
+    init {
+        connectionLiveData.observeForever {
+            connection.value = it
+        }
     }
 
 }

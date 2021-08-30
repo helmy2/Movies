@@ -5,6 +5,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.movies.ui.person.components.PersonScreenComponent
+import com.example.movies.ui.util.NoConnectionScreen
 
 @Composable
 fun PersonScreen(
@@ -13,14 +14,15 @@ fun PersonScreen(
     viewModel: PersonViewModel
 ) {
     LaunchedEffect(key1 = true) {
-        viewModel.getPersonDetails(id)
-        viewModel.getMovieCredits(id)
-        viewModel.getPersonImages(id)
+        viewModel.getData(id)
     }
     val personResult by viewModel.personResult
     val creditResult by viewModel.creditsResult
     val personImagesResult by viewModel.personImagesResult
 
-    PersonScreenComponent(personResult, creditResult, personImagesResult, onMovieClick)
+    if (viewModel.connection.value)
+        PersonScreenComponent(personResult, creditResult, personImagesResult, onMovieClick)
+    else
+        NoConnectionScreen()
 }
 

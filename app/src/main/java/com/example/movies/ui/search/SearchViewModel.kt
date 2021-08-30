@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.movies.data.models.Cast
 import com.example.movies.data.models.Result
 import com.example.movies.data.repository.repository.SearchRepository
+import com.example.movies.ui.util.ConnectionLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,8 +15,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val repository: SearchRepository
+    private val repository: SearchRepository,
+    private val connectionLiveData: ConnectionLiveData
 ) : ViewModel() {
+    var connection = mutableStateOf(false)
+        private set
 
     var movieResults: MutableState<List<Result>?> = mutableStateOf(null)
         private set
@@ -65,4 +69,9 @@ class SearchViewModel @Inject constructor(
         searchPerson()
     }
 
+    init {
+        connectionLiveData.observeForever {
+            connection.value = it
+        }
+    }
 }
