@@ -14,6 +14,7 @@ Movie is an application based on modern Android tech-stacks especially focus on 
 
 ## Tech stack & Open-source libraries
 - 100% [Kotlin](https://kotlinlang.org/) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) 
+- [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) - dependency injection library
 - JetPack
   - Compose - A modern toolkit for building native Android UI.
   - Lifecycle - dispose observing data when lifecycle state changes.
